@@ -169,6 +169,21 @@ export const PARTNERS = [
     src: "/images/sponsors/ProofPoint.webp",
     alt: "ProofPoint",
     url: "https://www.proofpoint.com/",
+  },
+  {
+    src: "/images/sponsors/CleanStart.webp",
+    alt: "Clean Start",
+    url: "https://www.cleanstart.com/",
+  },
+  {
+    src: "/images/sponsors/OrcaSecurity.webp",
+    alt: "Orca Security",
+    url: "https://orca.security",
+  },
+  {
+    src: "/images/sponsors/Tanium.webp",
+    alt: "Tanium",
+    url: "https://www.tanium.com/",
   }
 ];
 

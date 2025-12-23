@@ -125,7 +125,7 @@ export const PastSponsorSection = () => {
           transition={{ delay: 0.8 }}
           viewport={{ once: false }}
           whileInView={{ opacity: 1, y: 0 }}>
-          <SponsorsGrid logos={PARTNERS.slice(0, 4)} />
+          <SponsorsGrid logos={PARTNERS} />
         </motion.div>
       </div>
     </section>
@@ -133,12 +133,22 @@ export const PastSponsorSection = () => {
 };
 
 const SponsorsGrid = ({ logos = [] }) => {
+  const remainder = logos.length % 3;
+  const lastIndex = logos.length - 1;
+
   return (
-    <div className="relative py-4 max-w-5xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 justify-items-center">
-        {logos.map((logo, i) => (
-          <LogoCard key={`sponsor-${i}`} logo={logo} />
-        ))}
+    <div className="relative py-4 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 justify-items-center">
+        {logos.map((logo, i) => {
+          // Center the last item if there's only 1 remaining
+          const centerClass = remainder === 1 && i === lastIndex ? "md:col-start-2" : "";
+          
+          return (
+            <div key={`sponsor-${i}`} className={centerClass}>
+              <LogoCard logo={logo} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
