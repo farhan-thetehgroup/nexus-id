@@ -141,10 +141,35 @@ const SponsorsGrid = ({ logos = [] }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 justify-items-center">
         {logos.map((logo, i) => {
           // Center the last item if there's only 1 remaining
-          const centerClass = remainder === 1 && i === lastIndex ? "md:col-start-2" : "";
+          if (remainder === 1 && i === lastIndex) {
+            return (
+              <div key={`sponsor-${i}`} className="md:col-start-2">
+                <LogoCard logo={logo} />
+              </div>
+            );
+          }
+          
+          // Center the last 2 items if there are 2 remaining
+          if (remainder === 2 && i === lastIndex - 1) {
+            return (
+              <div key={`sponsor-wrapper-${i}`} className="md:col-span-3 md:flex md:justify-center md:gap-8 md:w-full">
+                <div className="w-full md:w-full md:max-w-[calc((100%-2rem)/3)]">
+                  <LogoCard logo={logo} />
+                </div>
+                <div className="w-full md:w-full md:max-w-[calc((100%-2rem)/3)]">
+                  <LogoCard logo={logos[lastIndex]} />
+                </div>
+              </div>
+            );
+          }
+          
+          // Skip the last item if we already rendered it with the second-to-last
+          if (remainder === 2 && i === lastIndex) {
+            return null;
+          }
           
           return (
-            <div key={`sponsor-${i}`} className={centerClass}>
+            <div key={`sponsor-${i}`}>
               <LogoCard logo={logo} />
             </div>
           );

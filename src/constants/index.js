@@ -184,22 +184,27 @@ export const PARTNERS = [
     src: "/images/sponsors/Tanium.webp",
     alt: "Tanium",
     url: "https://www.tanium.com/",
+  },
+  {
+    src: "/images/sponsors/Semperis.webp",
+    alt: "Semperis",
+    url: "https://www.semperis.com/",
   }
 ];
 
 export const LOCATION_DATA = {
-  title: "Pullman Ciawi Vimala Hills Resort ",
-  address: "Jl. Raya Puncak, Gadog, Megamendung , 16770 Bogor Indonesia",
+  title: "Royal Tulip Gunung Geulis Resort and Golf",
+  address: "Jl. Bukit Geulis, Nagrak, Gadog-Bogor, Kabupaten Bogor, Jawa Barat 16720",
   date: "4-5 February 2026",
-  room: "Keluak Room, Vimala Ballroom, Vimala Ballroom Foyer",
+  room: "Royal Tulip Ballroom South, Royal Tulip Ballroom West, Royal Tulip Ballroom East",
   // image: "/images/venue/jakarta.webp", // Main image displayed in the section
   images: [
-    { src: "/images/venue/pullman-entrance.jpg", alt: "Pullman Ciawi Vimala Hills Resort - Entrance" },
-    { src: "/images/venue/pullman-ballroom.jpg", alt: "Pullman Ballroom" },
-    { src: "/images/venue/pullman-pool.jpg", alt: "Pullman Pool" },
-    { src: "/images/venue/pullman-bedroom.jpg", alt: "Pullman Bedroom" },
+    { src: "/images/venue/royal-tulip-enterence.jpg", alt: "Royal Tulip Gunung Geulis Resort and Golf - Entrance" },
+    { src: "/images/venue/royal-tulip-ballroom.jpg", alt: "Royal Tulip Ballroom South" },
+    { src: "/images/venue/royal-tulip-drone.jpg", alt: "Royal Tulip Gunung Geulis Resort and Golf - Drone" },
+    { src: "/images/venue/royal-tulip-food.jpg", alt: "Royal Tulip Gunung Geulis Resort and Golf - Food" },
   ], // Gallery images for modal view
-  googleMapsUrl: "https://maps.app.goo.gl/z156Fo2Rybj6x2GD9",
+  googleMapsUrl: "https://maps.app.goo.gl/YmMWRHamWmRfqyjy9",
   additionalInfo: "Parking available on-site. Free Wi-Fi provided.",
 };
 
@@ -244,73 +249,103 @@ export const SPEAKERS = [
   },
   {
     id: 5,
+    fullName: "Theo Sutarto",
+    jobTitle: "Assistant Deputy Minister",
+    company: "Coordinating Ministry for Economic Affairs of the Republic of Indonesia",
+    image: "/images/speakers/Theo-Sutarto.webp",
+    isExclusive: true,
+  },
+  {
+    id: 6,
+    fullName: "Drs. Slamet Aji Pamungkas, M.Eng",
+    jobTitle: "Deputi Bidang Keamanan Siber dan Sandi Perekonomian",
+    company: "Badan Siber dan Sandi Negara (BSSN)",
+    image: "/images/speakers/Slamet-Aji.webp",
+    isExclusive: true,
+  },
+  {
+    id: 7,
     fullName: "Sendy Filemon",
     jobTitle: "Director of IT & Digital Experience",
     company: "PT Bank Sinarmas Tbk",
     image: "/images/speakers/Sendy-Filemon.webp",
   },
   {
-    id: 6,
+    id: 8,
     fullName: "Benedict Sulaiman",
     jobTitle: "Director of IT",
     company: "Mandaya Hospital",
     image: "/images/speakers/Benedict-Sulaiman.webp",
   },
   {
-    id: 7,
+    id: 9,
     fullName: "Dwi Prasetyo Minarto",
     jobTitle: "VP of IT",
     company: "PT Kilang Pertamina International",
     image: "/images/speakers/Dwi-Prasetyo.webp",
   },
   {
-    id: 8,
+    id: 10,
     fullName: "Adhiguna Mahendra",
-    jobTitle: "Director of Data and Artificial Intelligence",
-    company: "Otorita Ibu Kota Nusantara",
+    jobTitle: "Director of Data and AI",
+    company: "Bunda Mulia University",
     image: "/images/speakers/Adhiguna-Mahendra.webp",
   },
   {
-    id: 9,
+    id: 11,
     fullName: "Dea Saka Kurnia Putra",
     jobTitle: "Vice Chair of the Permanent Committee on Cybersecurity and Critical Infrastructure Protection",
     company: "Indonesia Chamber of Commerce and Industry (KADIN)",
     image: "/images/speakers/Dea-Saka.webp",
   },
   {
-    id: 10,
+    id: 12,
     fullName: "I Gede Darwin Atma Winarta",
     jobTitle: "Head of Digital Transformation",
     company: "BCA Life",
     image: "/images/speakers/Gede-Darwin.webp",
   },
   {
-    id: 11,
+    id: 13,
     fullName: "Surya Adhi Saputra",
     jobTitle: "Country Digital and Technology Head for Indonesia, Philippines, and Thailand",
     company: "Haleon",
     image: "/images/speakers/Surya-Adhi.webp",
   },
   {
-    id: 12,
+    id: 14,
     fullName: "Sigit Triwibowo",
     jobTitle: "Head of IT and Digital",
     company: "IKEA",
     image: "/images/speakers/Sigit-Triwibowo.webp",
   },
   {
-    id: 13,
+    id: 15,
     fullName: "Indra S Adillah",
     jobTitle: "Head of IT and Digital",
     company: "Indonesia Air Asia",
     image: "/images/speakers/Indra-S-Adillah.webp",
   },
   {
-    id: 14,
+    id: 16,
     fullName: "Darmadi",
     jobTitle: "Chief Information Officer",
     company: "Toyota Astra Motor",
     image: "/images/speakers/Darmadi.webp",
+  },
+  {
+    id: 17,
+    fullName: "Purnama Sulfa",
+    jobTitle: "Head of Chief Information Security Division",
+    company: "Mandiri Taspen",
+    image: "/images/speakers/Purnama-Sulfa.webp",
+  },
+  {
+    id: 18,
+    fullName: "Widianty",
+    jobTitle: "Head of Tech",
+    company: "PT Kalbe Farma, Tbk",
+    image: "/images/speakers/Widianty.jpeg",
   }
 ];
 
@@ -388,13 +423,13 @@ export const AGENDA_DAY_2 = [
   {
     id: 13,
     time: "09:15 AM - 10:00 AM",
-    title: `Session 1`,
+    title: `Session 1 `,
     type: "session",
-    // moderator: {
-    //   name: "Oskar Riandi",
-    //   image: "/images/contacts/ken.png",
-    //   role: "KORIKA",
-    // },
+    moderator: {
+      name: "Adhiguna Mahendra",
+      image: "/images/speakers/Adhiguna-Mahendra.webp",
+      role: "Director of Data and AI - Bunda Mulia University",
+    },
     speakers: [
       {
         name: "Pinky Dezar Zulkarnain",
@@ -402,9 +437,9 @@ export const AGENDA_DAY_2 = [
         role: "Director of IT - BPK RI",
       },
       {
-        name: "Sendy Filemon",
-        image: "/images/speakers/Sendy-Filemon.webp",
-        role: "Director of IT & Digital Experience - PT Bank Sinarmas Tbk",
+        name: "Purnama Sulfa",
+        image: "/images/speakers/Purnama-Sulfa.webp",
+        role: "Head of Chief Information Security Division - Mandiri Taspen",
       },
       {
         name: "Benedict Sulaiman",
@@ -442,7 +477,51 @@ export const AGENDA_DAY_2 = [
   {
     id: 16,
     time: "10:45 AM - 11:15 AM",
+    title: "Demo Session",
+    type: "demo-session",
+    image: "/images/sponsors/OrcaSecurity.webp",
+    description: "Agentless Cloud Security by Orca Security",
+  },
+  {
+    id: 17,
+    time: "11:15 AM - 11:45 AM",
+    title: "Demo Session",
+    type: "demo-session",
+    image: "/images/sponsors/Semperis.webp",
+    description: "Active Directory Protection by Semperis",
+  },
+  {
+    id: 18,
+    time: "11:45 AM - 12:15 AM",
+    title: "Demo Session",
+    type: "demo-session",
+    image: "/images/sponsors/LMNTRIX.webp",
+    description: "MDR and Active Defense by LMNTRIX",
+  },
+  {
+    id: 19,
+    time: "12:15 PM - 01:00 PM",
+    title: "Lunch Break",
+    type: "break"
+  },
+  {
+    id: 20,
+    time: "01:00 PM - 01:30 PM",
     title: "Session 3",
+    type: "session",
+    speakers: [
+      {
+        name: `Drs. Slamet Aji Pamungkas, M.Eng`,
+        image: "/images/speakers/Slamet-Aji.webp",
+        role: `Deputi Bidang Keamanan Siber dan Sandi Perekonomian - Badan Siber dan Sandi Negara (BSSN)`,
+      }
+    ],
+    description: "The Future of Cybersecurity in Supporting Sustainable Economic Growth",
+  },
+  {
+    id: 21,
+    time: "01:30 PM - 02:00 PM",
+    title: "Session 4",
     type: "session",
     speakers: [
       {
@@ -454,32 +533,8 @@ export const AGENDA_DAY_2 = [
     description: "Modernizing Public Investment Services: Building Fast, Transparent, and Integrated Digital Systems for Global Competitiveness",
   },
   {
-    id: 17,
-    time: "11:15 AM - 11:45 AM",
-    title: "Sponsor Demo",
-    type: "session"
-  },
-  {
-    id: 18,
-    time: "11:45 AM - 01:00 PM",
-    title: "Lunch Break",
-    type: "break"
-  },
-  {
-    id: 19,
-    time: "01:00 PM - 01:30 PM",
-    title: "Session 4",
-    type: "session",
-    speaker: {
-      name: "Adhiguna Mahendra",
-      image: "/images/speakers/Adhiguna-Mahendra.webp",
-      role: "Director of Data and Artificial Intelligence - Otorita Ibu Kota Nusantara",
-    },
-    description: "AI City: Building Nusantara from Data and Intelligence",
-  },
-  {
-    id: 20,
-    time: "01:30 PM - 02:00 PM",
+    id: 22,
+    time: "02:00 PM - 02:30 PM",
     title: "Session 5",
     type: "session",
     speakers: [
@@ -492,8 +547,8 @@ export const AGENDA_DAY_2 = [
     description: "Strengthening Indonesia’s Cyber Resilience: Strategic Policy, Industry Coordination, and Infrastructure Protection in the AI Era",
   },
   {
-    id: 21,
-    time: "02:00 PM - 02:30 PM",
+    id: 23,
+    time: "02:30 PM - 03:00 PM",
     title: "Session 6",
     type: "session",
     speakers: [
@@ -507,13 +562,13 @@ export const AGENDA_DAY_2 = [
   },
   {
     id: 22,
-    time: "02:30 PM - 03:10 PM",
+    time: "03:00 PM - 03:40 PM",
     title: "Session 7",
     type: "session",
-    // moderator: {
-    //   name: "Prakoso Bhairawa PUTERA",
-    //   image: "/images/contacts/ken.png",
-    // },
+    moderator: {
+      name: "Raymond Tjahja",
+      image: "/images/speakers/Raymond-Tjahja.webp",
+    },
     speakers: [
       {
         name: `I Gede Darwin Atma Winarta`,
@@ -535,7 +590,7 @@ export const AGENDA_DAY_2 = [
   },
   {
     id: 23,
-    time: "03:10 PM - 04:10 PM",
+    time: "03:40 PM - 04:20 PM",
     title: "Session 8 : Roundtable Discussions",
     type: "roundtable",
     roundtables: [
@@ -558,17 +613,17 @@ export const AGENDA_DAY_2 = [
             role: `Chief Information Officer - Toyota Astra Motor`,
           }
         ]
+      },
+      {
+        title: "Roundtable 3",
+        speakers: [
+          {
+            name: `Widianty`,
+            image: "/images/speakers/Widianty.jpeg",
+            role: `Head of Tech - PT Kalbe Farma, Tbk`,
+          }
+        ]
       }
-      // {
-      //   title: "Roundtable 3",
-      //   speakers: [
-      //     {
-      //       name: `Widianty`,
-      //       image: "/images/contacts/jeffreyteh.png",
-      //       role: `Head of Tech - PT Kalbe Farma, Tbk`,
-      //     }
-      //   ]
-      // }
     ]
   }
 ];

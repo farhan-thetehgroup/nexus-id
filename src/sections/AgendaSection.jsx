@@ -11,6 +11,7 @@ const AgendaRow = ({ agendaItem, index }) => {
   const isRegistration = agendaItem.type === "registration";
   const isMeeting = agendaItem.type === "meeting";
   const isRoundtable = agendaItem.type === "roundtable";
+  const isDemoSession = agendaItem.type === "demo-session";
 
   return (
     <motion.div
@@ -30,9 +31,17 @@ const AgendaRow = ({ agendaItem, index }) => {
           </div>
         </div>
 
-        {/* Speaker Image or Break/Registration/Meeting Icon */}
+        {/* Speaker Image or Break/Registration/Meeting/Demo Icon */}
         <div className="flex-shrink-0">
-          {isRoundtable && agendaItem.roundtables ? (
+          {isDemoSession ? (
+            <div className="relative w-20 h-12 sm:w-28 sm:h-16 md:w-36 md:h-20 rounded-lg overflow-hidden border-2 sm:border-4 border-indigo-500/50 group-hover:border-indigo-400 transition-colors duration-300 bg-white p-1 sm:p-1.5 md:p-2">
+              <img
+                alt={agendaItem.title}
+                className="w-full h-full object-contain"
+                src={agendaItem.image}
+              />
+            </div>
+          ) : isRoundtable && agendaItem.roundtables ? (
             /* Roundtable: Show all speakers from all roundtables */
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {agendaItem.roundtables.flatMap((roundtable, rIdx) =>
@@ -174,7 +183,7 @@ const AgendaRow = ({ agendaItem, index }) => {
               </h3>
 
               {/* Speaker/Moderator Info */}
-              {!isBreak && !isRegistration && !isMeeting && (
+              {!isBreak && !isRegistration && !isMeeting && !isDemoSession && (
                 <div className="mb-1.5 sm:mb-2 space-y-1">
                   {agendaItem.moderator && (
                     <div className="flex items-center gap-1.5 sm:gap-2">
