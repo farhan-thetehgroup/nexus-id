@@ -492,7 +492,7 @@ export const AGENDA_DAY_2 = [
   },
   {
     id: 18,
-    time: "11:45 AM - 12:15 AM",
+    time: "11:45 AM - 12:15 PM",
     title: "Demo Session",
     type: "demo-session",
     image: "/images/sponsors/LMNTRIX.webp",
