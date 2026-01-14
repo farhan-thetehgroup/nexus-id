@@ -1,5 +1,5 @@
 export const MENU_ITEMS = [
-  { name: "Sponsors", id: "sponsors" },
+  { name: "Support & Sponsors", id: "supported-by" },
   { name: "Why", id: "why" },
   // { name: "Tour", id: "tours" },
   { name: "Target Audience", id: "audience" },
@@ -189,7 +189,47 @@ export const PARTNERS = [
     src: "/images/sponsors/Semperis.webp",
     alt: "Semperis",
     url: "https://www.semperis.com/",
+  },
+  {
+    src: "/images/sponsors/Ofisgate.webp",
+    alt: "Ofisgate",
+    url: "https://ofisgate.com/",
+  },
+  {
+    src: "/images/sponsors/Tictag.webp",
+    alt: "Tigtag",
+    url: "https://www.tictag.io/id/",
   }
+];
+
+export const SUPPORTED_BY = [
+  // Add government logos here
+  // Example structure:
+  {
+    src: "/images/supports/BPK-RI.webp",
+    alt: "Badan Pengawas Keuangan Republik Indonesia (BPK RI)",
+    url: "https://www.bpk.go.id/",
+  },
+  {
+    src: "/images/supports/OJK.webp",
+    alt: "Otoritas Jasa Keuangan (OJK)",
+    url: "https://www.ojk.go.id/",
+  },
+  {
+    src: "/images/supports/BSSN.webp",
+    alt: "Badan Siber dan Sandi Negara (BSSN)",
+    url: "https://www.bssn.go.id/",
+  },
+  {
+    src: "/images/supports/Kementerian-Investasi-dan-Hilirisasi.webp",
+    alt: "Kementrian Investasi dan Hilirisasi",
+    url: "https://bkpm.go.id/",
+  },
+  {
+    src: "/images/supports/KADIN-Indonesia.webp",
+    alt: "Kamar Dagang dan Industri (KADIN) Indonesia",
+    url: "https://kadin.id/",
+  },
 ];
 
 export const LOCATION_DATA = {
@@ -352,15 +392,15 @@ export const SPEAKERS = [
 export const AGENDA_DAY_1 = [
   {
     id: 1,
-    time: "03:30 PM - 04:00 PM",
-    title: "Registration",
+    time: "02:30 PM - 03:00 PM",
+    title: "Check-in & Registration",
     type: "registration",
-    description: "Registration & PM Coffee Break",
+    description: "Check-in & Registration",
   },
   {
     id: 2,
-    time: "04:30 PM - 05:30 PM",
-    title: "Panel Discussion",
+    time: "03:30 PM - 05:30 PM",
+    title: "Welcoming Speech",
     moderator: {
       name: "Jeffrey Teh",
       image: "/images/contacts/jeffreyteh.png",
@@ -376,27 +416,62 @@ export const AGENDA_DAY_1 = [
   },
   {
     id: 3,
-    time: "05:30 PM",
-    title: "Dinner & Networking Drink",
-    type: "break",
+    time: "03:40 PM - 04:10 PM",
+    title: "Session 1",
+    type: "session",
     // moderator: {
     //   name: "Jeffrey Teh",
     //   image: "/images/contacts/jeffreyteh.png",
     //   role: "CTO, The TEH Group",
     // },
+    speakers: [
+      {
+        name: "Theo Sutarto",
+        image: "/images/speakers/Theo-Sutarto.webp",
+        role: "Assistant Deputy Minister, Coordinating Ministry for Economic Affairs of the Republic of Indonesia",
+      },
+    ],
+    description: "AI Governance for Sustainable Economic Growth: Policy Directions for Indonesia’s Digital Future",
+  },
+  {
+    id: 4,
+    time: "04:10 PM - 04:40 PM",
+    title: "Sponsor Presentation",
+    type: "demo-session",
+    image: "/images/sponsors/CleanStart.webp",
     // speakers: [
     //   {
-    //     name: "Michael Rodriguez",
-    //     image: "/images/contacts/ken.png",
-    //     role: "VP of Cybersecurity",
-    //   },
-    //   {
-    //     name: "Lisa Anderson",
-    //     image: "/images/contacts/jeffreyteh.png",
-    //     role: "CISO, SecureNet Corp",
+    //     name: "Biswajit De",
+    //     role: "Co-Founder and Chief Technology Officer",
     //   },
     // ],
-    // description: "Industry leaders discuss the intersection of AI and cybersecurity",
+  },
+  {
+    id: 5,
+    time: "04:40 PM - 05:10 PM",
+    title: "Sponsor Presentation",
+    type: "demo-session",
+    image: "/images/sponsors/XTREMAX.webp",
+  },
+  {
+    id: 6,
+    time: "05:10 PM - 05:40 PM",
+    title: "Sponsor Presentation",
+    type: "demo-session",
+    image: "/images/sponsors/ProofPoint.webp",
+  },
+  {
+    id: 7,
+    time: "05:40 PM - 06:10 PM",
+    title: "Sponsor Presentation",
+    type: "demo-session",
+    image: "/images/sponsors/Semperis.webp",
+  },
+  {
+    id: 8,
+    time: "06:10 PM",
+    title: "Dinner / Networking Drink",
+    type: "break"
   }
 ];
 
