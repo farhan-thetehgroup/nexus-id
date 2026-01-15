@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-import { BRAND_LOGO_WHITE, MENU_ITEMS } from "../constants";
+import { BRAND_LOGO_WHITE, MENU_ITEMS, LINK_REGISTER } from "../constants";
 
 export const AdvancedNavbar = ({ scrollToSection }) => {
   const { scrollY } = useScroll();
@@ -149,7 +149,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
             <div className="hidden lg:block">
               <button
                 className="group relative px-6 py-2.5 rounded-full font-semibold text-sm overflow-hidden"
-                onClick={() => handleNavClick("contact")}>
+                onClick={() => window.open(LINK_REGISTER.trim(), "_blank", "noopener,noreferrer")}>
                 {/* Animated Background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-cyan-500 transition-transform duration-300 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -247,9 +247,11 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
 
             {/* Mobile CTA */}
             <div className="mt-6 pt-6 border-t border-gray-700">
-              <button
-                className="w-full px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg font-semibold text-gray-900 flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/50"
-                onClick={() => handleNavClick("contact")}>
+              <a
+                href={LINK_REGISTER.trim()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg font-semibold text-gray-900 flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/50">
                 Join Us
                 <svg
                   className="w-5 h-5"
@@ -263,7 +265,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
                     strokeWidth={2}
                   />
                 </svg>
-              </button>
+              </a>
             </div>
           </div>
         </div>

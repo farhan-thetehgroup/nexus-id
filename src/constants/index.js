@@ -1,6 +1,6 @@
 export const MENU_ITEMS = [
   { name: "Support & Sponsors", id: "supported-by" },
-  { name: "Why", id: "why" },
+  // { name: "Why", id: "why" },
   // { name: "Tour", id: "tours" },
   { name: "Target Audience", id: "audience" },
   { name: "Event Formats", id: "event-formats" },

@@ -227,17 +227,6 @@ const ContactForm = () => {
         <div className="relative z-10">
           {/* Header */}
           <div className="text-center mb-8">
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/40 mb-4"
-              initial={{ scale: 0 }}
-              transition={{ type: "spring", delay: 0.2 }}
-              whileInView={{ scale: 1 }}>
-              <Mail className="w-4 h-4 text-cyan-400" />
-              <span className="text-cyan-400 font-medium text-sm">
-                Sponsorship Inquiry
-              </span>
-            </motion.div>
-
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">
               Get in Touch with{" "}
               <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
@@ -381,7 +370,7 @@ const ContactForm = () => {
                 ].join(" ")}
                 name="message"
                 onChange={handleChange}
-                placeholder="Tell us about your sponsorship interests and goals..."
+                placeholder="Tell us about your inquiry..."
                 required
                 rows={6}
                 value={formData.message}
@@ -522,7 +511,7 @@ export default function ContactFormSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             whileInView={{ opacity: 1, y: 0 }}>
             <span className="bg-gradient-to-r from-cyan-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
-              Ask for Sponsorship
+            Contact Us
             </span>
           </motion.h2>
 
@@ -531,8 +520,7 @@ export default function ContactFormSection() {
             initial={{ opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             whileInView={{ opacity: 1 }}>
-            Connect with us to discuss partnership opportunities for AI Nexus
-            APAC
+            Contact us for inquiries about Nexus APAC Indonesia 2026
           </motion.p>
         </motion.div>
 
