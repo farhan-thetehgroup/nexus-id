@@ -127,11 +127,10 @@ export const WhySponsorSection = () => {
       id="why"
       ref={containerRef}>
       <motion.div
-        className="absolute inset-0 opacity-30"
-        style={{ y: backgroundY }}>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl" />
+        className="absolute inset-0 opacity-20"
+        style={{ y: backgroundY, willChange: 'transform' }}>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl" />
       </motion.div>
 
       <div className="max-w-7xl mx-auto relative z-10 w-full">
@@ -141,7 +140,7 @@ export const WhySponsorSection = () => {
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6"
             initial={{ scale: 0 }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+            transition={{ type: "spring", stiffness: 200, delay: 0.1, duration: 0.4 }}
             whileInView={{ scale: 1 }}>
             <Sparkles className="w-5 h-5 text-emerald-400" />
             <span className="text-emerald-400 font-semibold">
@@ -151,8 +150,8 @@ export const WhySponsorSection = () => {
 
           <motion.h2
             className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 15 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
             whileInView={{ opacity: 1, y: 0 }}>
             Why Sponsor Nexus?
           </motion.h2>
@@ -160,7 +159,7 @@ export const WhySponsorSection = () => {
           <motion.p
             className="text-xl text-gray-400 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.4, delay: 0.25 }}
             whileInView={{ opacity: 1 }}>
             Unlock unprecedented opportunities and maximize your brands impact
           </motion.p>

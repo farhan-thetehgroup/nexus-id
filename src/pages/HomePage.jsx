@@ -38,8 +38,8 @@ export const HomePage = () => {
       <PastSponsorSection />
       {/* <WhySponsorSection /> */}
       {/* <AudienceSection /> */}
-      <EventFormatSection />
       <SpeakersSection />
+      <EventFormatSection />
       <AgendaSection />
       <LocationSection />
       <ContactFormSection />

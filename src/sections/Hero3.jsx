@@ -34,15 +34,15 @@ const ThreeBackground = () => {
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
-      antialias: true,
+      antialias: false, // Disable antialiasing for performance
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio
     mountRef.current.appendChild(renderer.domElement);
 
-    // Particle System
+    // Particle System - Optimized for performance
     const particlesGeometry = new THREE.BufferGeometry();
-    const particleCount = 3000;
+    const particleCount = window.innerWidth < 768 ? 150 : 400;
     const posArray = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
@@ -93,12 +93,13 @@ const ThreeBackground = () => {
     particlesRef.current = particlesMesh;
     scene.add(particlesMesh);
 
-    // Network Lines
+    // Network Lines - Reduced count
     const linesGeometry = new THREE.BufferGeometry();
     const linePositions = [];
     const lineColors = [];
+    const lineCount = window.innerWidth < 768 ? 20 : 30;
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < lineCount; i++) {
       const x1 = (Math.random() - 0.5) * 10;
       const y1 = (Math.random() - 0.5) * 10;
       const z1 = (Math.random() - 0.5) * 10;
@@ -136,8 +137,9 @@ const ThreeBackground = () => {
     const createGlobe = (position, color) => {
       const globeGroup = new THREE.Group();
 
-      // Main sphere
-      const geometry = new THREE.SphereGeometry(0.5, 32, 32);
+      // Main sphere - Reduced segments for performance
+      const segments = window.innerWidth < 768 ? 16 : 24;
+      const geometry = new THREE.SphereGeometry(0.5, segments, segments);
       const material = new THREE.MeshBasicMaterial({
         color: color,
         transparent: true,
@@ -147,9 +149,10 @@ const ThreeBackground = () => {
       const sphere = new THREE.Mesh(geometry, material);
       globeGroup.add(sphere);
 
-      // Orbiting particles
-      for (let i = 0; i < 8; i++) {
-        const particleGeometry = new THREE.SphereGeometry(0.03, 8, 8);
+      // Orbiting particles - Reduced count
+      const orbitCount = window.innerWidth < 768 ? 4 : 6;
+      for (let i = 0; i < orbitCount; i++) {
+        const particleGeometry = new THREE.SphereGeometry(0.03, 6, 6);
         const particleMaterial = new THREE.MeshBasicMaterial({
           color: color,
           transparent: true,
@@ -193,44 +196,52 @@ const ThreeBackground = () => {
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Animation loop
+    // Animation loop - Optimized with throttling
     let time = 0;
+    let frameCount = 0;
     const animate = () => {
       requestAnimationFrame(animate);
       time += 0.005;
+      frameCount++;
 
-      // Rotate particles
+      // Rotate particles (always update)
       if (particlesRef.current) {
         particlesRef.current.rotation.y += 0.0005;
         particlesRef.current.rotation.x += 0.0002;
       }
 
-      // Rotate lines
+      // Rotate lines (always update)
       linesMesh.rotation.y += 0.0003;
       linesMesh.rotation.x += 0.0001;
 
-      // Animate globes
+      // Animate globes - throttle expensive operations
       [aiGlobe, cyberGlobe, enterpriseGlobe].forEach((globe, index) => {
         globe.rotation.y += 0.005 + index * 0.001;
 
-        // Orbiting particles
-        globe.children.forEach((child, i) => {
-          if (i > 0) {
-            // Skip the main sphere
-            const angle = child.userData.angle + time * (1 + index * 0.5);
-            child.position.x = Math.cos(angle) * child.userData.radius;
-            child.position.z = Math.sin(angle) * child.userData.radius;
-          }
-        });
+        // Orbiting particles - update every 2 frames
+        if (frameCount % 2 === 0) {
+          globe.children.forEach((child, i) => {
+            if (i > 0) {
+              // Skip the main sphere
+              const angle = child.userData.angle + time * (1 + index * 0.5);
+              child.position.x = Math.cos(angle) * child.userData.radius;
+              child.position.z = Math.sin(angle) * child.userData.radius;
+            }
+          });
+        }
 
-        // Floating animation
-        globe.position.y += Math.sin(time * 2 + index) * 0.001;
+        // Floating animation - update every 3 frames
+        if (frameCount % 3 === 0) {
+          globe.position.y += Math.sin(time * 2 + index) * 0.001;
+        }
       });
 
-      // Camera movement based on mouse
-      camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
-      camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
-      camera.lookAt(scene.position);
+      // Camera movement based on mouse - smooth but throttled
+      if (frameCount % 2 === 0) {
+        camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+        camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+      }
 
       renderer.render(scene, camera);
     };
@@ -250,6 +261,18 @@ const ThreeBackground = () => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
+      // Cleanup geometries and materials to free memory
+      particlesGeometry.dispose();
+      particlesMaterial.dispose();
+      linesGeometry.dispose();
+      linesMaterial.dispose();
+      // Cleanup globes
+      [aiGlobe, cyberGlobe, enterpriseGlobe].forEach((globe) => {
+        globe.traverse((child) => {
+          if (child.geometry) child.geometry.dispose();
+          if (child.material) child.material.dispose();
+        });
+      });
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
       }

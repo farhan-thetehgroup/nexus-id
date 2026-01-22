@@ -110,7 +110,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
   },
 };
 
@@ -124,12 +124,12 @@ const itemVariants = {
 };
 
 const cardVariants = {
-  hidden: { scale: 0.95, opacity: 0, y: 20 },
+  hidden: { scale: 0.98, opacity: 0, y: 10 },
   visible: {
     scale: 1,
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 120, damping: 15 },
+    transition: { type: "spring", stiffness: 200, damping: 20, duration: 0.4 },
   },
 };
 
@@ -143,21 +143,23 @@ export const EventFormatSection = () => {
       id="event-formats">
       <motion.div
         animate={{
-          x: [0, 30, 0],
-          y: [0, -30, 0],
-          scale: [1, 1.1, 1],
+          x: [0, 15, 0],
+          y: [0, -15, 0],
+          scale: [1, 1.05, 1],
         }}
-        className="absolute top-20 left-10 h-72 w-64 rounded-full opacity-10 blur-3xl bg-tech-green-400"
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 left-10 h-72 w-64 rounded-full opacity-5 blur-3xl bg-tech-green-400"
+        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+        style={{ willChange: 'transform' }}
       />
       <motion.div
         animate={{
-          x: [0, -30, 0],
-          y: [0, 30, 0],
-          scale: [1, 1.2, 1],
+          x: [0, -15, 0],
+          y: [0, 15, 0],
+          scale: [1, 1.05, 1],
         }}
-        className="absolute right-10 bottom-20 h-80 w-80 rounded-full opacity-10 blur-3xl bg-cyan-400"
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute right-10 bottom-20 h-80 w-80 rounded-full opacity-5 blur-3xl bg-cyan-400"
+        transition={{ duration: 35, repeat: Infinity, ease: "easeInOut" }}
+        style={{ willChange: 'transform' }}
       />
 
       <div className="absolute inset-0 opacity-5">
@@ -180,8 +182,8 @@ export const EventFormatSection = () => {
           whileInView="visible">
           <motion.div
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/40 mb-6 backdrop-blur-sm"
-            initial={{ scale: 0, rotate: -180 }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+            initial={{ scale: 0, rotate: -90 }}
+            transition={{ type: "spring", stiffness: 200, delay: 0.1, duration: 0.4 }}
             whileInView={{ scale: 1, rotate: 0 }}>
             <Calendar className="w-5 h-5 text-purple-400" />
             <span className="text-purple-400 font-semibold">
@@ -191,8 +193,8 @@ export const EventFormatSection = () => {
 
           <motion.h2
             className="text-5xl md:text-7xl font-bold mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            initial={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
             whileInView={{ opacity: 1, y: 0 }}>
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-tech-green-400 bg-clip-text text-transparent">
               The Event Format
@@ -202,7 +204,7 @@ export const EventFormatSection = () => {
           <motion.p
             className="text-xl text-gray-400 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
             whileInView={{ opacity: 1 }}>
             Multiple engagement opportunities designed to maximize value and
             networking
@@ -225,7 +227,9 @@ export const EventFormatSection = () => {
                   onMouseEnter={() => setHoveredCard(format.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                   variants={cardVariants}
-                  whileHover={{ y: -12, scale: 1.02 }}>
+                  whileHover={{ y: -6, scale: 1.01 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ willChange: 'transform' }}>
                   <motion.div
                     animate={{
                       boxShadow:
@@ -233,7 +237,7 @@ export const EventFormatSection = () => {
                           "0 20px 60px rgba(16, 185, 129, 0.4)"
                         : "0 10px 30px rgba(0, 0, 0, 0.3)",
                     }}
-                    className="relative h-full overflow-hidden rounded-2xl bg-brand-700/40 backdrop-blur-sm shadow-xl border-2 border-tech-green-400/20 hover:border-tech-green-400/60 transition-all duration-500">
+                    className="relative h-full overflow-hidden rounded-2xl bg-brand-700/40 backdrop-blur-sm shadow-xl border-2 border-tech-green-400/20 hover:border-tech-green-400/60 transition-all duration-300">
                     <div className="relative h-64 overflow-hidden">
                       <motion.img
                         alt={format.title}
@@ -242,7 +246,7 @@ export const EventFormatSection = () => {
                         }}
                         className="h-full w-full object-cover"
                         src={format.image}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.4 }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/60 to-transparent" />
 
@@ -251,7 +255,7 @@ export const EventFormatSection = () => {
                           rotate: hoveredCard === format.id ? 360 : 0,
                         }}
                         className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-tech-green-400/90 shadow-lg backdrop-blur-sm border-2 border-white"
-                        transition={{ duration: 0.6 }}>
+                        transition={{ duration: 0.4 }}>
                         <span className="text-brand-900 text-lg font-bold">
                           {index + 1}
                         </span>
@@ -264,7 +268,7 @@ export const EventFormatSection = () => {
                           scale: hoveredCard === format.id ? 1.1 : 1,
                         }}
                         className={`absolute top-4 left-4 rounded-full bg-gradient-to-br p-3 ${format.color} text-white shadow-xl border-2 border-white/50`}
-                        transition={{ duration: 0.5 }}>
+                        transition={{ duration: 0.3 }}>
                         <IconComponent className="h-5 w-5" />
                       </motion.div>
 

@@ -31,18 +31,18 @@ const ThreeFooterBackground = () => {
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
-      antialias: true,
+      antialias: false, // Disable antialiasing for performance
     });
     renderer.setSize(
       mountRef.current.clientWidth,
       mountRef.current.clientHeight
     );
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio
     mountRef.current.appendChild(renderer.domElement);
 
-    // Wave particles
+    // Wave particles - Optimized for performance
     const particlesGeometry = new THREE.BufferGeometry();
-    const particleCount = 1200;
+    const particleCount = window.innerWidth < 768 ? 150 : 400;
     const posArray = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
@@ -80,8 +80,8 @@ const ThreeFooterBackground = () => {
     );
     scene.add(particlesMesh);
 
-    // Animated grid
-    const gridSize = 20;
+    // Animated grid - Reduced complexity
+    const gridSize = window.innerWidth < 768 ? 8 : 12;
     const gridGeometry = new THREE.PlaneGeometry(10, 10, gridSize, gridSize);
     const gridMaterial = new THREE.MeshBasicMaterial({
       color: 0x10b981,
@@ -95,24 +95,34 @@ const ThreeFooterBackground = () => {
     scene.add(grid);
 
     let time = 0;
+    let frameCount = 0;
     const animate = () => {
       requestAnimationFrame(animate);
       time += 0.01;
+      frameCount++;
 
-      const positions = particlesGeometry.attributes.position.array;
-      for (let i = 1; i < positions.length; i += 3) {
-        positions[i] = Math.sin(positions[i - 1] * 0.5 + time) * 0.5;
+      // Throttle heavy updates - only update every 2 frames
+      if (frameCount % 2 === 0) {
+        const positions = particlesGeometry.attributes.position.array;
+        const positionsLength = positions.length;
+        for (let i = 1; i < positionsLength; i += 3) {
+          positions[i] = Math.sin(positions[i - 1] * 0.5 + time) * 0.5;
+        }
+        particlesGeometry.attributes.position.needsUpdate = true;
       }
-      particlesGeometry.attributes.position.needsUpdate = true;
 
-      const gridPositions = gridGeometry.attributes.position.array;
-      for (let i = 0; i < gridPositions.length; i += 3) {
-        const x = gridPositions[i];
-        const y = gridPositions[i + 1];
-        gridPositions[i + 2] =
-          Math.sin(x * 0.5 + time) * 0.3 + Math.cos(y * 0.5 + time) * 0.3;
+      // Update grid less frequently - every 3 frames
+      if (frameCount % 3 === 0) {
+        const gridPositions = gridGeometry.attributes.position.array;
+        const gridLength = gridPositions.length;
+        for (let i = 0; i < gridLength; i += 3) {
+          const x = gridPositions[i];
+          const y = gridPositions[i + 1];
+          gridPositions[i + 2] =
+            Math.sin(x * 0.5 + time) * 0.3 + Math.cos(y * 0.5 + time) * 0.3;
+        }
+        gridGeometry.attributes.position.needsUpdate = true;
       }
-      gridGeometry.attributes.position.needsUpdate = true;
 
       particlesMesh.rotation.y += 0.0005;
       grid.rotation.z += 0.0003;
@@ -137,6 +147,11 @@ const ThreeFooterBackground = () => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      // Cleanup geometries and materials to free memory
+      particlesGeometry.dispose();
+      particlesMaterial.dispose();
+      gridGeometry.dispose();
+      gridMaterial.dispose();
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
       }

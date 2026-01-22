@@ -15,9 +15,9 @@ const AnimatedSection = ({ id, children }) => {
   );
 };
 
-// Floating Particles Component
+// Floating Particles Component - Reduced for performance
 const FloatingParticles = () => {
-  const particles = Array.from({ length: 30 });
+  const particles = Array.from({ length: 10 });
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -28,9 +28,10 @@ const FloatingParticles = () => {
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${3 + Math.random() * 4}s`,
-            opacity: Math.random() * 0.5 + 0.3,
+            animationDelay: `${Math.random() * 3}s`,
+            animationDuration: `${4 + Math.random() * 2}s`,
+            opacity: Math.random() * 0.3 + 0.2,
+            willChange: 'transform',
           }}
         />
       ))}
@@ -77,16 +78,24 @@ export const HeroSection = ({ containerVariants }) => {
   const [typedText, setTypedText] = useState("");
   const fullText = "Connecting Innovation Across the Asia-Pacific";
 
-  // Mouse tracking effect
+  // Mouse tracking effect - Reduced sensitivity for performance
   useEffect(() => {
+    let rafId = null;
     const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        setMousePosition({
+          x: (e.clientX / window.innerWidth - 0.5) * 10,
+          y: (e.clientY / window.innerHeight - 0.5) * 10,
+        });
+        rafId = null;
       });
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Typewriter effect
@@ -127,25 +136,19 @@ export const HeroSection = ({ containerVariants }) => {
   return (
     <AnimatedSection containerVariants={containerVariants} id="hero">
       <div className="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden bg-gradient-to-br from-brand-800 via-tech-green-900 to-brand-800">
-        {/* Animated Background Elements */}
-        {/* <GridBackground /> */}
+        {/* Animated Background Elements - Reduced for performance */}
         <FloatingParticles />
 
-        {/* Glowing Orbs */}
+        {/* Glowing Orbs - Reduced to 1 */}
         <GlowingOrb delay={0} />
-        <div className="absolute top-1/4 right-1/4 transform translate-x-1/2">
-          <GlowingOrb delay={2} />
-        </div>
-        <div className="absolute bottom-1/4 left-1/4">
-          <GlowingOrb delay={1} />
-        </div>
 
         {/* Main Content */}
         <div
           className="relative z-10 text-center max-w-6xl mx-auto"
           style={{
             transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-            transition: "transform 0.3s ease-out",
+            transition: "transform 0.5s ease-out",
+            willChange: 'transform',
           }}>
           {/* Logo with Advanced Animation */}
           <div className="relative inline-block mb-6 sm:mb-8">
@@ -206,9 +209,10 @@ export const HeroSection = ({ containerVariants }) => {
             {/* Register Now Button */}
             <motion.div
               className="relative inline-block group"
-              whileHover={{ scale: 1.05 }}>
-              {/* Button Glow Ring */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition duration-500 animate-pulse" />
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.2 }}>
+              {/* Button Glow Ring - Simplified */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 rounded-full blur-lg opacity-30 group-hover:opacity-60 transition duration-300" />
 
               <button
                 className="relative bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 group w-full sm:w-auto"
@@ -237,9 +241,10 @@ export const HeroSection = ({ containerVariants }) => {
             {/* View Agenda Button */}
             <motion.div
               className="relative inline-block group"
-              whileHover={{ scale: 1.05 }}>
-              {/* Button Glow Ring */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 via-cyan-400 to-brand-400 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition duration-500 animate-pulse" />
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.2 }}>
+              {/* Button Glow Ring - Simplified */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 via-cyan-400 to-brand-400 rounded-full blur-lg opacity-30 group-hover:opacity-60 transition duration-300" />
 
               {/* Main Button */}
               <button

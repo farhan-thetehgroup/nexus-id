@@ -84,7 +84,7 @@ const AudienceCard = ({ item, index }) => {
         ease: [0.21, 0.47, 0.32, 0.98],
       }}>
       <div
-        className={`absolute inset-0 bg-gradient-to-br ${item.gradient} rounded-3xl blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+        className={`absolute inset-0 bg-gradient-to-br ${item.gradient} rounded-3xl blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
       />
 
       <motion.div
@@ -95,7 +95,7 @@ const AudienceCard = ({ item, index }) => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(16,185,129,0.1),transparent)]" />
 
         <div
-          className={`absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br ${item.gradient} rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
+          className={`absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br ${item.gradient} rounded-full blur-3xl opacity-20 group-hover:opacity-30 transition-opacity duration-300`}
         />
 
         <div className="relative p-8">
@@ -170,8 +170,7 @@ export const AudienceSection = () => {
 
   const headerY = useTransform(scrollYProgress, [0, 0.3], [100, 0]);
   const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const bgRotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
     <section
@@ -179,11 +178,10 @@ export const AudienceSection = () => {
       id="audience"
       ref={containerRef}>
       <motion.div
-        className="absolute inset-0 opacity-20"
-        style={{ y: backgroundY, rotate: bgRotate }}>
-        <div className="absolute top-32 right-20 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-32 left-20 w-80 h-80 bg-purple-500/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-3xl" />
+        className="absolute inset-0 opacity-15"
+        style={{ y: backgroundY, willChange: 'transform' }}>
+        <div className="absolute top-32 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-32 left-20 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl" />
       </motion.div>
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_100%)]" />

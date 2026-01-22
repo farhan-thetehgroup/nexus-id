@@ -18,16 +18,16 @@ export const TechParticleField = () => {
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
       alpha: true,
-      antialias: true,
+      antialias: false, // Disable antialiasing for performance
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Already limited, keep it
     camera.position.z = 50;
 
-    // Digital particles - menggunakan brand colors
+    // Digital particles - Optimized for performance
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 2000;
+    const particlesCount = window.innerWidth < 768 ? 150 : 400;
     const posArray = new Float32Array(particlesCount * 3);
     const colorsArray = new Float32Array(particlesCount * 3);
 
@@ -78,7 +78,7 @@ export const TechParticleField = () => {
     );
     scene.add(particlesMesh);
 
-    // Network lines - Tech Green
+    // Network lines - Tech Green (Reduced count)
     const lineMaterial = new THREE.LineBasicMaterial({
       color: 0x10b981,
       transparent: true,
@@ -87,8 +87,9 @@ export const TechParticleField = () => {
 
     const lineGeometry = new THREE.BufferGeometry();
     const linePositions = [];
+    const lineCount = window.innerWidth < 768 ? 30 : 50;
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < lineCount; i++) {
       const x1 = (Math.random() - 0.5) * 100;
       const y1 = (Math.random() - 0.5) * 100;
       const z1 = (Math.random() - 0.5) * 50;
@@ -106,8 +107,9 @@ export const TechParticleField = () => {
     const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lines);
 
-    // AI Brain - Tech Green
-    const brainGeometry = new THREE.TorusKnotGeometry(3, 1, 100, 16);
+    // AI Brain - Tech Green (Reduced complexity)
+    const brainSegments = window.innerWidth < 768 ? 50 : 64;
+    const brainGeometry = new THREE.TorusKnotGeometry(3, 1, brainSegments, 12);
     const brainMaterial = new THREE.MeshBasicMaterial({
       color: 0x10b981,
       wireframe: true,
@@ -142,10 +144,12 @@ export const TechParticleField = () => {
     enterpriseCube.position.set(0, -25, -10);
     scene.add(enterpriseCube);
 
-    // Data streams - Teal
+    // Data streams - Teal (Reduced count)
     const rings = [];
-    for (let i = 0; i < 6; i++) {
-      const ringGeometry = new THREE.TorusGeometry(2, 0.3, 16, 32);
+    const ringCount = window.innerWidth < 768 ? 3 : 4;
+    for (let i = 0; i < ringCount; i++) {
+      const ringSegments = window.innerWidth < 768 ? 12 : 16;
+      const ringGeometry = new THREE.TorusGeometry(2, 0.3, ringSegments, 24);
       const ringMaterial = new THREE.MeshBasicMaterial({
         color: i % 2 === 0 ? 0x14b8a6 : 0x06b6d4,
         wireframe: true,
@@ -182,52 +186,67 @@ export const TechParticleField = () => {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("scroll", handleScroll);
 
+    let frameCount = 0;
     const animate = () => {
       requestAnimationFrame(animate);
       const time = Date.now() * 0.001;
+      frameCount++;
 
       particlesMesh.rotation.y += 0.0005;
       particlesMesh.rotation.x = mouseY * 0.05;
       particlesMesh.position.y = scrollPosition * -0.015;
 
-      const positions = particlesMesh.geometry.attributes.position.array;
-      for (let i = 0; i < positions.length; i += 3) {
-        positions[i + 1] += Math.sin((scrollPosition + i) * 0.002) * 0.03;
-        positions[i] += Math.cos(time * 0.5 + i) * 0.01;
+      // Throttle expensive position updates - every 2 frames
+      if (frameCount % 2 === 0) {
+        const positions = particlesMesh.geometry.attributes.position.array;
+        const positionsLength = positions.length;
+        for (let i = 0; i < positionsLength; i += 3) {
+          positions[i + 1] += Math.sin((scrollPosition + i) * 0.002) * 0.03;
+          positions[i] += Math.cos(time * 0.5 + i) * 0.01;
+        }
+        particlesMesh.geometry.attributes.position.needsUpdate = true;
       }
-      particlesMesh.geometry.attributes.position.needsUpdate = true;
 
       lines.rotation.y += 0.001;
       lines.rotation.x = scrollPosition * 0.0005;
 
-      aiBrain.rotation.x += 0.01;
-      aiBrain.rotation.y += 0.015;
-      const brainScale = 1 + Math.sin(time * 2) * 0.2;
-      aiBrain.scale.set(brainScale, brainScale, brainScale);
-      aiBrain.position.y += Math.sin(time) * 0.02;
+      // Throttle object animations - every 2 frames
+      if (frameCount % 2 === 0) {
+        aiBrain.rotation.x += 0.01;
+        aiBrain.rotation.y += 0.015;
+        const brainScale = 1 + Math.sin(time * 2) * 0.2;
+        aiBrain.scale.set(brainScale, brainScale, brainScale);
+        aiBrain.position.y += Math.sin(time) * 0.02;
 
-      cyberShield.rotation.x += 0.015;
-      cyberShield.rotation.y += 0.012;
-      cyberShield.rotation.z += 0.018;
-      const shieldScale = 1 + Math.sin(time * 3) * 0.15;
-      cyberShield.scale.set(shieldScale, shieldScale, shieldScale);
+        cyberShield.rotation.x += 0.015;
+        cyberShield.rotation.y += 0.012;
+        cyberShield.rotation.z += 0.018;
+        const shieldScale = 1 + Math.sin(time * 3) * 0.15;
+        cyberShield.scale.set(shieldScale, shieldScale, shieldScale);
 
-      enterpriseCube.rotation.x += 0.012;
-      enterpriseCube.rotation.y += 0.012;
-      enterpriseCube.position.y += Math.cos(time * 0.8) * 0.015;
+        enterpriseCube.rotation.x += 0.012;
+        enterpriseCube.rotation.y += 0.012;
+        enterpriseCube.position.y += Math.cos(time * 0.8) * 0.015;
+      }
 
-      rings.forEach((ring, idx) => {
-        ring.position.y =
-          ring.userData.initialY +
-          Math.sin(time * ring.userData.floatSpeed + idx) * 8;
-        ring.rotation.z += 0.02;
-        ring.rotation.x += 0.01;
-        ring.position.z = Math.sin(scrollPosition * 0.005 + idx) * 5;
-      });
+      // Update rings less frequently - every 3 frames
+      if (frameCount % 3 === 0) {
+        rings.forEach((ring, idx) => {
+          ring.position.y =
+            ring.userData.initialY +
+            Math.sin(time * ring.userData.floatSpeed + idx) * 8;
+          ring.rotation.z += 0.02;
+          ring.rotation.x += 0.01;
+          ring.position.z = Math.sin(scrollPosition * 0.005 + idx) * 5;
+        });
+      }
 
-      camera.position.x = mouseX * 8;
-      camera.position.y = mouseY * 8;
-      camera.lookAt(scene.position);
+      // Camera movement - smooth but throttled
+      if (frameCount % 2 === 0) {
+        camera.position.x = mouseX * 8;
+        camera.position.y = mouseY * 8;
+        camera.lookAt(scene.position);
+      }
 
       renderer.render(scene, camera);
     };
@@ -246,6 +265,21 @@ export const TechParticleField = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      // Cleanup geometries and materials to free memory
+      particlesGeometry.dispose();
+      particlesMaterial.dispose();
+      lineGeometry.dispose();
+      lineMaterial.dispose();
+      brainGeometry.dispose();
+      brainMaterial.dispose();
+      shieldGeometry.dispose();
+      shieldMaterial.dispose();
+      cubeGeometry.dispose();
+      cubeMaterial.dispose();
+      rings.forEach((ring) => {
+        ring.geometry.dispose();
+        ring.material.dispose();
+      });
       renderer.dispose();
     };
   }, []);

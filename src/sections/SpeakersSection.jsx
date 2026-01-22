@@ -13,12 +13,13 @@ const SpeakerCard = ({ speaker, index }) => {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      style={{ willChange: 'transform, opacity' }}
       className="group relative">
       {/* Enhanced glow effect for exclusive speakers */}
-      <div className={`absolute -inset-1 bg-gradient-to-r ${isExclusive ? 'from-purple-500/70 via-emerald-500/70 to-cyan-500/70' : 'from-emerald-500/50 to-cyan-500/50'} rounded-2xl blur-xl ${isExclusive ? 'opacity-30' : 'opacity-0'} group-hover:opacity-75 transition-opacity duration-500`} />
+      <div className={`absolute -inset-1 bg-gradient-to-r ${isExclusive ? 'from-purple-500/70 via-emerald-500/70 to-cyan-500/70' : 'from-emerald-500/50 to-cyan-500/50'} rounded-2xl blur-xl ${isExclusive ? 'opacity-30' : 'opacity-0'} group-hover:opacity-60 transition-opacity duration-300`} />
       
       {/* Exclusive badge */}
       {isExclusive && (
@@ -30,15 +31,16 @@ const SpeakerCard = ({ speaker, index }) => {
       {/* Card */}
       <motion.div
         className={`relative bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-xl rounded-2xl ${isExclusive ? 'border-2 border-emerald-400/60 hover:border-emerald-300/90 shadow-2xl shadow-emerald-500/30' : 'border border-emerald-500/30 hover:border-emerald-400/70'} overflow-hidden h-full`}
-        whileHover={{ y: -8, scale: 1.02 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+        whileHover={{ y: -4, scale: 1.01 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20, duration: 0.2 }}
+        style={{ willChange: 'transform' }}>
         
         {/* Enhanced background gradient effect for exclusive */}
         <div className={`absolute inset-0 ${isExclusive ? 'bg-[radial-gradient(circle_at_50%_120%,rgba(16,185,129,0.2),transparent)]' : 'bg-[radial-gradient(circle_at_50%_120%,rgba(16,185,129,0.1),transparent)]'}`} />
         
         {/* Animated border glow for exclusive */}
         {isExclusive && (
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-purple-500/20 opacity-0 group-hover:opacity-60 transition-opacity duration-300 blur-sm" />
         )}
         
         {/* Top glow orb */}
@@ -49,7 +51,7 @@ const SpeakerCard = ({ speaker, index }) => {
           {/* Speaker Image */}
           <div className="relative mb-6">
             {/* Enhanced glow ring for exclusive */}
-            <div className={`absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full blur-lg ${isExclusive ? 'opacity-30' : 'opacity-0'} group-hover:opacity-50 transition-opacity duration-500`} />
+            <div className={`absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full blur-lg ${isExclusive ? 'opacity-30' : 'opacity-0'} group-hover:opacity-40 transition-opacity duration-300`} />
             
             {/* Image container */}
             <motion.div
@@ -96,11 +98,10 @@ export const SpeakersSection = () => {
       id="speakers"
       ref={containerRef}>
       
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-32 right-20 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-32 left-20 w-80 h-80 bg-purple-500/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-3xl" />
+      {/* Background Effects - Reduced for performance */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute top-32 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-32 left-20 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl" />
       </div>
 
       {/* Grid Pattern */}
@@ -110,15 +111,15 @@ export const SpeakersSection = () => {
         {/* Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}>
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}>
           
           <motion.div
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 to-blue-500/20 border border-emerald-500/40 mb-6 backdrop-blur-sm"
-            initial={{ scale: 0, rotate: -180 }}
-            animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}>
+            initial={{ scale: 0, rotate: -90 }}
+            animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -90 }}
+            transition={{ type: "spring", stiffness: 200, delay: 0.1, duration: 0.4 }}>
             <Mic className="w-5 h-5 text-emerald-400" />
             <span className="text-emerald-400 font-semibold">
               Industry Experts
@@ -127,9 +128,9 @@ export const SpeakersSection = () => {
 
           <motion.h2
             className="text-5xl md:text-7xl font-bold mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.3 }}>
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.15 }}>
             <span className="bg-gradient-to-r from-blue-400 via-emerald-400 to-purple-400 bg-clip-text text-transparent">
               Our Speakers
             </span>
@@ -139,7 +140,7 @@ export const SpeakersSection = () => {
             className="text-xl text-gray-400 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}>
+            transition={{ duration: 0.5, delay: 0.25 }}>
             Learn from leading experts in AI, Cybersecurity, and Enterprise Technology
           </motion.p>
         </motion.div>

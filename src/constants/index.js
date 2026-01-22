@@ -2,8 +2,8 @@ export const MENU_ITEMS = [
   { name: "Support & Sponsors", id: "supported-by" },
   // { name: "Why", id: "why" },
   // { name: "Tour", id: "tours" },
-  { name: "Event Formats", id: "event-formats" },
   { name: "Speakers", id: "speakers" },
+  { name: "Event Formats", id: "event-formats" },
   { name: "Agenda", id: "agenda" },
   { name: "Location", id: "location" },
   { name: "Contact", id: "contact" },
@@ -13,7 +13,7 @@ export const BRAND_LOGO = "/images/brand-logo/nexus-green.svg";
 export const BRAND_LOGO_WHITE = "/images/brand-logo/nexus-teh-white.svg";
 export const SPEED_PARTNERS_MARQUEE = 300000; // kecepatan scroll (ms)
 export const LINK_REGISTER =
-  "https://event.thetehgroup.com/-nexus-indonesia-2026/overview?token=ZT1jNTU3N2JiMy0wOTJkLTRjNjUtODIyNi0zMjUzODEwNDE4NGU%3d";
+  "https://event.thetehgroup.com/-nexus-indonesia-2026/overview?token=ZT1jNTU3N2JiMy0wOTJkLTRjNjUtODIyNi0zMjUzODEwNDE4NGUmcmM9MUVFU0JEQkRQQg%3d%3d";
 export const TEASER_URL =
   "https://cyberattack-event.com/wp-content/uploads/2024/10/CA-MY-EVENT-DRAFT-2.mp4";
 
@@ -718,7 +718,7 @@ export const AGENDA_DAY_2 = [
         speakers: [
           {
             name: `Donny Wu`,
-            image: "/images/speakers/Donny-Wu.jpeg",
+            image: "/images/speakers/Donny-Wu.webp",
             role: `Vice President of Digital Initiatives and Solutions - Sinarmas Land`,
           }
         ]
