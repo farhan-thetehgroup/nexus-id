@@ -294,7 +294,7 @@ export const Hero = ({ scrollToSection }) => {
 
         {/* Main Content */}
         <div
-          className="relative z-10 text-center max-w-6xl mx-auto"
+          className="relative z-10 text-center max-w-7xl mx-auto"
           style={{
             transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
             transition: "transform 0.3s ease-out",

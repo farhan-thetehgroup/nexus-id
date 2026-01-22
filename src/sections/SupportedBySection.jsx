@@ -73,7 +73,7 @@ export const SupportedBySection = () => {
       {/* Content */}
       <div className="relative z-10 w-full px-4">
         {/* Header */}
-        <div className="text-center mb-16 max-w-4xl mx-auto">
+        <div className="text-center mb-16 max-w-6xl mx-auto">
           <motion.div
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border-2 border-emerald-400/40 mb-6 backdrop-blur-sm shadow-lg"
             initial={{ scale: 0, rotate: -180 }}
@@ -137,7 +137,7 @@ const SupportedByGrid = ({ logos = [] }) => {
   const lastIndex = logos.length - 1;
 
   return (
-    <div className="relative py-4 max-w-6xl mx-auto">
+    <div className="relative py-4 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 justify-items-center">
         {logos.map((logo, i) => {
           // Center the last item if there's only 1 remaining

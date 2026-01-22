@@ -133,7 +133,7 @@ export const WhySponsorSection = () => {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl" />
       </motion.div>
 
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
+      <div className="max-w-screen-2xl mx-auto relative z-10 w-full">
         <motion.div
           className="text-center mb-20"
           style={{ y: headerY, opacity: headerOpacity }}>

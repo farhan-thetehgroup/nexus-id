@@ -226,7 +226,7 @@ export const TourSection = () => {
 
       <div className="absolute inset-0 z-20 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
+      <div className="max-w-screen-2xl mx-auto relative z-10 w-full">
         <motion.div
           className="text-center mb-20"
           style={{ y: headerY, opacity: headerOpacity }}>

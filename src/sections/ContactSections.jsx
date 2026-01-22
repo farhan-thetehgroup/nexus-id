@@ -360,7 +360,7 @@ export const ContactSection = () => {
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05)_0%,transparent_100%)]" />
 
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
+      <div className="max-w-screen-2xl mx-auto relative z-10 w-full">
         <motion.div
           className="text-center mb-20"
           style={{ y: headerY, opacity: headerOpacity }}>

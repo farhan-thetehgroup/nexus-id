@@ -173,7 +173,7 @@ export const EventFormatSection = () => {
         />
       </div>
 
-      <div className="max-w-7xl relative z-10 mx-auto px-4">
+      <div className="max-w-screen-2xl relative z-10 mx-auto px-4">
         <motion.div
           className="mb-16 text-center"
           initial="hidden"

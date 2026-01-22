@@ -328,7 +328,7 @@ export const Hero = ({ scrollToSection }) => {
         <ThreeBackground />
 
         {/* Main Content */}
-        <div className="relative z-10 text-center max-w-6xl mx-auto">
+        <div className="relative z-10 text-center max-w-7xl mx-auto">
           {/* Logo */}
           <div className="mb-8 relative inline-block">
             <div className="absolute inset-0 bg-emerald-400 blur-3xl opacity-30 animate-pulse" />

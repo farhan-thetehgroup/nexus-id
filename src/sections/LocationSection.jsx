@@ -36,7 +36,7 @@ export const LocationSection = () => {
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_100%)]" />
 
-      <div className="max-w-7xl mx-auto relative z-10 w-full">
+      <div className="max-w-screen-2xl mx-auto relative z-10 w-full">
         {/* Header */}
         <motion.div
           className="text-center mb-16"
@@ -76,7 +76,7 @@ export const LocationSection = () => {
 
         {/* Location Card */}
         <motion.div
-          className="relative group max-w-5xl mx-auto"
+          className="relative group max-w-6xl mx-auto"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.4 }}>
