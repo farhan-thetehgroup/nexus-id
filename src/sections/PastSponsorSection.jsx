@@ -25,7 +25,7 @@ export const PastSponsorSection = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden py-20 md:py-28"
+      className="relative min-h-screen flex items-center overflow-hidden py-12 md:py-16"
       id="sponsors"
       ref={sectionRef}>
       {/* Animated Background Blobs */}

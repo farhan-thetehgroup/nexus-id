@@ -37,7 +37,7 @@ export const HomePage = () => {
       <SupportedBySection />
       <PastSponsorSection />
       {/* <WhySponsorSection /> */}
-      <AudienceSection />
+      {/* <AudienceSection /> */}
       <EventFormatSection />
       <SpeakersSection />
       <AgendaSection />

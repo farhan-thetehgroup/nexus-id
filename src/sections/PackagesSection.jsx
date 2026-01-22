@@ -244,7 +244,7 @@ export default function PackagesSection() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center py-32 px-4 overflow-hidden bg-gradient-to-br from-slate-950 via-amber-950/20 to-slate-950"
+      className="relative min-h-screen flex items-center justify-center py-20 px-4 overflow-hidden bg-gradient-to-br from-slate-950 via-amber-950/20 to-slate-950"
       id="packages"
       ref={containerRef}>
       <motion.div

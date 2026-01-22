@@ -175,7 +175,7 @@ export const AudienceSection = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center py-32 px-4 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center py-20 px-4 overflow-hidden"
       id="audience"
       ref={containerRef}>
       <motion.div

@@ -2,7 +2,6 @@ export const MENU_ITEMS = [
   { name: "Support & Sponsors", id: "supported-by" },
   // { name: "Why", id: "why" },
   // { name: "Tour", id: "tours" },
-  { name: "Target Audience", id: "audience" },
   { name: "Event Formats", id: "event-formats" },
   { name: "Speakers", id: "speakers" },
   { name: "Agenda", id: "agenda" },
@@ -199,6 +198,16 @@ export const PARTNERS = [
     src: "/images/sponsors/Tictag.webp",
     alt: "Tigtag",
     url: "https://www.tictag.io/id/",
+  },
+  {
+    src: "/images/sponsors/Volantis.webp",
+    alt: "Volantis",
+    url: "https://www.volantis.io/",
+  },
+  {
+    src: "/images/sponsors/TelinPro.webp",
+    alt: "Telin Pro",
+    url: "https://www.telin.net/en",
   }
 ];
 
@@ -304,13 +313,6 @@ export const SPEAKERS = [
     isExclusive: true,
   },
   {
-    id: 7,
-    fullName: "Sendy Filemon",
-    jobTitle: "Director of IT & Digital Experience",
-    company: "PT Bank Sinarmas Tbk",
-    image: "/images/speakers/Sendy-Filemon.webp",
-  },
-  {
     id: 8,
     fullName: "Benedict Sulaiman",
     jobTitle: "Director of IT",
@@ -334,8 +336,8 @@ export const SPEAKERS = [
   {
     id: 11,
     fullName: "Dea Saka Kurnia Putra",
-    jobTitle: "Vice Chair of the Permanent Committee on Cybersecurity and Critical Infrastructure Protection",
-    company: "Indonesia Chamber of Commerce and Industry (KADIN)",
+    jobTitle: "Cybersecurity Expert",
+    // company: "Indonesia Chamber of Commerce and Industry (KADIN)",
     image: "/images/speakers/Dea-Saka.webp",
   },
   {
@@ -360,13 +362,6 @@ export const SPEAKERS = [
     image: "/images/speakers/Sigit-Triwibowo.webp",
   },
   {
-    id: 15,
-    fullName: "Indra S Adillah",
-    jobTitle: "Head of IT and Digital",
-    company: "Indonesia Air Asia",
-    image: "/images/speakers/Indra-S-Adillah.webp",
-  },
-  {
     id: 16,
     fullName: "Darmadi",
     jobTitle: "Chief Information Officer",
@@ -386,7 +381,35 @@ export const SPEAKERS = [
     jobTitle: "Head of Tech",
     company: "PT Kalbe Farma, Tbk",
     image: "/images/speakers/Widianty.jpeg",
-  }
+  },
+  {
+    id: 19,
+    fullName: "Tarun Gupta",
+    // jobTitle: "Head of IT",
+    company: "Clean Start",
+    image: "/images/speakers/Tarun-Gupta.jpeg",
+  },
+  {
+    id: 20,
+    fullName: "Billy Yuliadi",
+    jobTitle: "Technical Director",
+    company: "Tanium",
+    image: "/images/speakers/Billy-Yuliadi.webp",
+  },
+  {
+    id: 21,
+    fullName: "Michael Choo",
+    jobTitle: "Senior Solutions Architect",
+    company: "Sempiris APJ",
+    image: "/images/speakers/Michael-Choo.webp",
+  },
+  {
+    id: 22,
+    fullName: "Donny Wu",
+    jobTitle: "Vice President of Digital Initiatives and Solutions",
+    company: "Sinarmas Land",
+    image: "/images/speakers/Donny-Wu.webp",
+  },
 ];
 
 export const AGENDA_DAY_1 = [
@@ -458,13 +481,27 @@ export const AGENDA_DAY_1 = [
     time: "05:10 PM - 05:40 PM",
     title: "Sponsor Presentation",
     type: "demo-session",
-    image: "/images/sponsors/ProofPoint.webp",
+    speakers: [
+      {
+        name: "Billy Yuliadi",
+        image: "/images/speakers/Billy-Yuliadi.webp",
+        role: "Technical Director - Tanium",
+      },
+    ],
+    image: "/images/sponsors/Tanium.webp",
   },
   {
     id: 7,
     time: "05:40 PM - 06:10 PM",
     title: "Sponsor Presentation",
     type: "demo-session",
+    speakers: [
+      {
+        name: "Michael Choo",
+        image: "/images/speakers/Michael-Choo.webp",
+        role: "Senior Solutions Architect - Sempiris APJ",
+      },
+    ],
     image: "/images/sponsors/Semperis.webp",
   },
   {
@@ -545,42 +582,49 @@ export const AGENDA_DAY_2 = [
   },
   {
     id: 15,
-    time: "10:30 AM - 10:45 AM",
-    title: "Coffee Break",
-    type: "break"
+    time: "10:30 PM - 10:45 PM",
+    title: "Sponsor Presentation",
+    type: "demo-session",
+    image: "/images/sponsors/TelinPro.webp",
   },
   {
     id: 16,
-    time: "10:45 AM - 11:15 AM",
+    time: "11:00 AM - 12:00 AM",
+    title: "PM Coffee Break",
+    type: "break"
+  },
+  {
+    id: 17,
+    time: "11:00 AM - 11:20 AM",
     title: "Demo Session",
     type: "demo-session",
     image: "/images/sponsors/OrcaSecurity.webp",
     description: "Agentless Cloud Security by Orca Security",
   },
   {
-    id: 17,
-    time: "11:15 AM - 11:45 AM",
+    id: 18,
+    time: "11:20 AM - 11:40 AM",
     title: "Demo Session",
     type: "demo-session",
     image: "/images/sponsors/Semperis.webp",
-    description: "Active Directory Protection by Semperis",
-  },
-  {
-    id: 18,
-    time: "11:45 AM - 12:15 PM",
-    title: "Demo Session",
-    type: "demo-session",
-    image: "/images/sponsors/LMNTRIX.webp",
-    description: "MDR and Active Defense by LMNTRIX",
+    description: "Active Directory Protection",
   },
   {
     id: 19,
-    time: "12:15 PM - 01:00 PM",
+    time: "11:40 AM - 12:00 PM",
+    title: "Demo Session",
+    type: "demo-session",
+    image: "/images/sponsors/LMNTRIX.webp",
+    description: "MDR and Active Defense",
+  },
+  {
+    id: 21,
+    time: "12:00 PM - 01:00 PM",
     title: "Lunch Break",
     type: "break"
   },
   {
-    id: 20,
+    id: 22,
     time: "01:00 PM - 01:30 PM",
     title: "Session 3",
     type: "session",
@@ -594,7 +638,7 @@ export const AGENDA_DAY_2 = [
     description: "The Future of Cybersecurity in Supporting Sustainable Economic Growth",
   },
   {
-    id: 21,
+    id: 23,
     time: "01:30 PM - 02:00 PM",
     title: "Session 4",
     type: "session",
@@ -608,7 +652,7 @@ export const AGENDA_DAY_2 = [
     description: "Modernizing Public Investment Services: Building Fast, Transparent, and Integrated Digital Systems for Global Competitiveness",
   },
   {
-    id: 22,
+    id: 24,
     time: "02:00 PM - 02:30 PM",
     title: "Session 5",
     type: "session",
@@ -616,13 +660,13 @@ export const AGENDA_DAY_2 = [
       {
         name: `Dea Saka Kurnia Putra`,
         image: "/images/speakers/Dea-Saka.webp",
-        role: `Vice Chair of the Permanent Committee on Cybersecurity and Critical Infrastructure Protection - Indonesia Chamber of Commerce and Industry (KADIN)`,
+        role: `Cybersecurity Expert`,
       }
     ],
     description: "Strengthening Indonesia’s Cyber Resilience: Strategic Policy, Industry Coordination, and Infrastructure Protection in the AI Era",
   },
   {
-    id: 23,
+    id: 25,
     time: "02:30 PM - 03:00 PM",
     title: "Session 6",
     type: "session",
@@ -636,7 +680,7 @@ export const AGENDA_DAY_2 = [
     description: "Healthcare Transformation at Scale: Building a Smart, Agile, and Efficient National Hospital Network",
   },
   {
-    id: 22,
+    id: 26,
     time: "03:00 PM - 03:40 PM",
     title: "Session 7",
     type: "session",
@@ -664,7 +708,7 @@ export const AGENDA_DAY_2 = [
     description: "Fireside Chat - Driving Intelligent Transformation: Lessons from Leading Industries",
   },
   {
-    id: 23,
+    id: 27,
     time: "03:40 PM - 04:20 PM",
     title: "Session 8 : Roundtable Discussions",
     type: "roundtable",
@@ -673,9 +717,9 @@ export const AGENDA_DAY_2 = [
         title: `Roundtable 1 - "AI Adoption in Large-Scale Enterprises: Strategy, Governance, and Real Business Impact"`,
         speakers: [
           {
-            name: `Indra S Adillah`,
-            image: "/images/speakers/Indra-S-Adillah.webp",
-            role: `Head of IT and Digital - Indonesia Air Asia`,
+            name: `Donny Wu`,
+            image: "/images/speakers/Donny-Wu.jpeg",
+            role: `Vice President of Digital Initiatives and Solutions - Sinarmas Land`,
           }
         ]
       },

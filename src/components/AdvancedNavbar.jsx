@@ -161,7 +161,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
 
                 {/* Button Text */}
                 <span className="relative flex items-center gap-2 text-gray-900">
-                  Join Us
+                  Register Now
                   <svg
                     className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
                     fill="none"

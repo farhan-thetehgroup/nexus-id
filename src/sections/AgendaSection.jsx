@@ -247,7 +247,7 @@ export const AgendaSection = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 overflow-hidden"
       id="agenda"
       ref={containerRef}>
       

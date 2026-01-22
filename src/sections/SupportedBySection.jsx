@@ -25,7 +25,7 @@ export const SupportedBySection = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden py-20 md:py-28"
+      className="relative min-h-screen flex items-center overflow-hidden py-12 md:py-16"
       id="supported-by"
       ref={sectionRef}>
       {/* Animated Background Blobs */}

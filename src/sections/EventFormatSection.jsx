@@ -53,25 +53,25 @@ const eventFormats = [
     color: "from-cyan-400 to-cyan-600",
     attendees: "20-30",
   },
+  // {
+  //   id: 3,
+  //   icon: MessageCircle,
+  //   title: "Interactive Workshop",
+  //   description:
+  //     "An immersive learning experience where participants engage in hands-on activities and collaborative problem-solving sessions.",
+  //   features: [
+  //     "Practical exercises",
+  //     "Group activities",
+  //     "Expert guidance",
+  //     "Takeaway materials",
+  //   ],
+  //   image:
+  //     "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop",
+  //   color: "from-brand-400 to-brand-600",
+  //   attendees: "15-20",
+  // },
   {
     id: 3,
-    icon: MessageCircle,
-    title: "Interactive Workshop",
-    description:
-      "An immersive learning experience where participants engage in hands-on activities and collaborative problem-solving sessions.",
-    features: [
-      "Practical exercises",
-      "Group activities",
-      "Expert guidance",
-      "Takeaway materials",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop",
-    color: "from-brand-400 to-brand-600",
-    attendees: "15-20",
-  },
-  {
-    id: 4,
     icon: Mic2,
     title: "Insightfull Conference",
     description:
@@ -88,7 +88,7 @@ const eventFormats = [
     attendees: "300",
   },
   {
-    id: 5,
+    id: 4,
     icon: Coffee,
     title: "Exhibition Hall",
     description:
@@ -139,7 +139,7 @@ export const EventFormatSection = () => {
 
   return (
     <section
-      className="relative overflow-hidden py-20 md:py-28"
+      className="relative overflow-hidden py-12 md:py-16"
       id="event-formats">
       <motion.div
         animate={{
@@ -214,8 +214,8 @@ export const EventFormatSection = () => {
           variants={containerVariants}
           viewport={{ once: false, amount: 0.2 }}
           whileInView="visible">
-          <div className="grid gap-8 md:grid-cols-3 mb-8">
-            {eventFormats.slice(0, 3).map((format, index) => {
+          <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {eventFormats.map((format, index) => {
               const IconComponent = format.icon;
               return (
                 <motion.div
@@ -254,119 +254,6 @@ export const EventFormatSection = () => {
                         transition={{ duration: 0.6 }}>
                         <span className="text-brand-900 text-lg font-bold">
                           {index + 1}
-                        </span>
-                      </motion.div>
-
-                      <motion.div
-                        animate={{
-                          rotate:
-                            hoveredCard === format.id ? [0, -10, 10, 0] : 0,
-                          scale: hoveredCard === format.id ? 1.1 : 1,
-                        }}
-                        className={`absolute top-4 left-4 rounded-full bg-gradient-to-br p-3 ${format.color} text-white shadow-xl border-2 border-white/50`}
-                        transition={{ duration: 0.5 }}>
-                        <IconComponent className="h-5 w-5" />
-                      </motion.div>
-
-                      <motion.div
-                        className="absolute bottom-4 left-4 rounded-full bg-white/95 px-4 py-2 backdrop-blur-sm shadow-lg border border-tech-green-400/50"
-                        whileHover={{ scale: 1.1 }}>
-                        <div className="flex items-center gap-2">
-                          <Users className="h-4 w-4 text-tech-green-600" />
-                          <span className="text-brand-900 text-sm font-bold">
-                            {format.attendees}
-                          </span>
-                        </div>
-                      </motion.div>
-                    </div>
-
-                    <div className="p-6">
-                      <h3 className="text-white group-hover:text-tech-green-400 mb-3 text-xl font-bold transition-colors">
-                        {format.title}
-                      </h3>
-                      <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-200">
-                        {format.description}
-                      </p>
-                      <div className="mb-4 space-y-2">
-                        {format.features.slice(0, 2).map((f, idx) => (
-                          <motion.div
-                            className="flex items-center gap-2 text-xs text-gray-300"
-                            initial={{ opacity: 0, x: -20 }}
-                            key={idx}
-                            transition={{
-                              delay: hoveredCard === format.id ? idx * 0.1 : 0,
-                            }}
-                            viewport={{ once: false }}
-                            whileInView={{ opacity: 1, x: 0 }}>
-                            <div className="h-2 w-2 flex-shrink-0 rounded-full bg-tech-green-400" />
-                            <span>{f}</span>
-                          </motion.div>
-                        ))}
-                      </div>
-                      <motion.div className="flex items-center justify-between border-t border-tech-green-400/20 pt-4">
-                        <span className="text-tech-green-400 text-sm font-semibold">
-                          Learn More
-                        </span>
-                        <motion.div
-                          animate={
-                            hoveredCard === format.id ?
-                              { x: [0, 5, 0] }
-                            : { x: 0 }
-                          }
-                          transition={{
-                            repeat: hoveredCard === format.id ? Infinity : 0,
-                            duration: 1.5,
-                          }}>
-                          <ChevronRight className="h-5 w-5 text-tech-green-400" />
-                        </motion.div>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="flex flex-col justify-center gap-8 md:flex-row">
-            {eventFormats.slice(3).map((format, index) => {
-              const IconComponent = format.icon;
-              return (
-                <motion.div
-                  className="group w-full cursor-pointer md:max-w-md"
-                  key={format.id}
-                  onClick={() => setSelectedFormat(format)}
-                  onMouseEnter={() => setHoveredCard(format.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                  variants={cardVariants}
-                  whileHover={{ y: -12, scale: 1.02 }}>
-                  <motion.div
-                    animate={{
-                      boxShadow:
-                        hoveredCard === format.id ?
-                          "0 20px 60px rgba(16, 185, 129, 0.4)"
-                        : "0 10px 30px rgba(0, 0, 0, 0.3)",
-                    }}
-                    className="relative h-full overflow-hidden rounded-2xl bg-brand-700/40 backdrop-blur-sm shadow-xl border-2 border-tech-green-400/20 hover:border-tech-green-400/60 transition-all duration-500">
-                    <div className="relative h-64 overflow-hidden">
-                      <motion.img
-                        alt={format.title}
-                        animate={{
-                          scale: hoveredCard === format.id ? 1.15 : 1,
-                        }}
-                        className="h-full w-full object-cover"
-                        src={format.image}
-                        transition={{ duration: 0.6 }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/60 to-transparent" />
-
-                      <motion.div
-                        animate={{
-                          rotate: hoveredCard === format.id ? 360 : 0,
-                        }}
-                        className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-tech-green-400/90 shadow-lg backdrop-blur-sm border-2 border-white"
-                        transition={{ duration: 0.6 }}>
-                        <span className="text-brand-900 text-lg font-bold">
-                          {3 + index + 1}
                         </span>
                       </motion.div>
 
