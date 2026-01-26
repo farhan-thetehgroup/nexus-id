@@ -472,12 +472,13 @@ export const AGENDA_DAY_1 = [
     title: "Sponsor Presentation",
     type: "demo-session",
     image: "/images/sponsors/CleanStart.webp",
-    // speakers: [
-    //   {
-    //     name: "Biswajit De",
-    //     role: "Co-Founder and Chief Technology Officer",
-    //   },
-    // ],
+    speakers: [
+      {
+        name: "Nelish Jain",
+        image: "/images/speakers/Nelish-Jain.webp",
+        role: "Clean Start",
+      },
+    ],
   },
   {
     id: 5,
