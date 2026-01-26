@@ -394,10 +394,10 @@ export const SPEAKERS = [
   },
   {
     id: 19,
-    fullName: "Tarun Gupta",
+    fullName: "Nelish Jain",
     // jobTitle: "Head of IT",
     company: "Clean Start",
-    image: "/images/speakers/Tarun-Gupta.jpeg",
+    image: "/images/speakers/Nelish-Jain.webp",
   },
   {
     id: 20,
