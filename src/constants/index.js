@@ -190,21 +190,6 @@ export const PARTNERS = [
     url: "https://www.semperis.com/",
   },
   {
-    src: "/images/sponsors/Ofisgate.webp",
-    alt: "Ofisgate",
-    url: "https://ofisgate.com/",
-  },
-  {
-    src: "/images/sponsors/Tictag.webp",
-    alt: "Tigtag",
-    url: "https://www.tictag.io/id/",
-  },
-  {
-    src: "/images/sponsors/Volantis.webp",
-    alt: "Volantis",
-    url: "https://www.volantis.io/",
-  },
-  {
     src: "/images/sponsors/TelinPro.webp",
     alt: "Telin Pro",
     url: "https://www.telin.net/en",
@@ -218,7 +203,22 @@ export const PARTNERS = [
     src: "/images/sponsors/Datadog.webp",
     alt: "Datadog",
     url: "https://www.datadoghq.com/",
-  }
+  },
+  {
+    src: "/images/sponsors/Tictag.webp",
+    alt: "Tigtag",
+    url: "https://www.tictag.io/id/",
+  },
+  {
+    src: "/images/sponsors/Volantis.webp",
+    alt: "Volantis",
+    url: "https://www.volantis.io/",
+  },
+  {
+    src: "/images/sponsors/Ofisgate.webp",
+    alt: "Ofisgate",
+    url: "https://ofisgate.com/",
+  },
 ];
 
 export const SUPPORTED_BY = [
@@ -544,13 +544,27 @@ export const AGENDA_DAY_2 = [
   },
   {
     id: 13,
-    time: "09:15 AM - 10:00 AM",
+    time: "09:15 AM - 09:45 AM",
     title: `Session 1 `,
+    type: "session",
+    speakers: [
+      {
+        name: "Drs. Slamet Aji Pamungkas, M.Eng",
+        image: "/images/speakers/Slamet-Aji.webp",
+        role: "Deputi Bidang Keamanan Siber dan Sandi Perekonomian - Badan Siber dan Sandi Negara (BSSN)",
+      },
+    ],
+    description: `The Future of Cybersecurity in Supporting Sustainable Economic Growth`,
+  },
+  {
+    id: 14,
+    time: "09:45 AM - 10:30 AM",
+    title: `Session 2`,
     type: "session",
     moderator: {
       name: "Adhiguna Mahendra",
       image: "/images/speakers/Adhiguna-Mahendra.webp",
-      role: "Director of Data and AI - Bunda Mulia University",
+      role: "Director of Data AI - Bunda Mulia University",
     },
     speakers: [
       {
@@ -574,12 +588,12 @@ export const AGENDA_DAY_2 = [
         role: "VP of IT - PT Kilang Pertamina International",
       }
     ],
-    description: `Panel Discussion "AI-Powered Transformation: Building Smart, Secure, and Scalable Systems for 2026"`,
+    description: `Panel Discussion “AI-Powered Transformation: Building Smart, Secure, and Scalable Systems for 2026”"`,
   },
   {
-    id: 14,
-    time: "10:00 AM - 10:30 AM",
-    title: `Session 2`,
+    id: 15,
+    time: "10:30 AM - 11:00 AM",
+    title: "Session 3",
     type: "session",
     speakers: [
       {
@@ -588,18 +602,11 @@ export const AGENDA_DAY_2 = [
         role: `Deputy Commissioner and Head of OJK Institute (Otoritas Jasa Keuangan)`,
       }
     ],
-    description: `Key Notes : "Building Trust and Resilience in the Age of AI: The Regulatory Perspective"`,
-  },
-  {
-    id: 15,
-    time: "10:30 PM - 10:45 PM",
-    title: "Sponsor Presentation",
-    type: "demo-session",
-    image: "/images/sponsors/TelinPro.webp",
+    description: "Building Trust and Resilience in the Age of AI: The Regulatory Perspective",
   },
   {
     id: 16,
-    time: "11:00 AM - 12:00 AM",
+    time: "11:00 AM - 12:00 PM",
     title: "PM Coffee Break",
     type: "break"
   },
@@ -628,27 +635,22 @@ export const AGENDA_DAY_2 = [
     description: "MDR and Active Defense",
   },
   {
-    id: 21,
+    id: 20,
     time: "12:00 PM - 01:00 PM",
     title: "Lunch Break",
     type: "break"
   },
   {
-    id: 22,
+    id: 21,
     time: "01:00 PM - 01:30 PM",
-    title: "Session 3",
-    type: "session",
-    speakers: [
-      {
-        name: `Drs. Slamet Aji Pamungkas, M.Eng`,
-        image: "/images/speakers/Slamet-Aji.webp",
-        role: `Deputi Bidang Keamanan Siber dan Sandi Perekonomian - Badan Siber dan Sandi Negara (BSSN)`,
-      }
-    ],
-    description: "The Future of Cybersecurity in Supporting Sustainable Economic Growth",
+    title: "Sponsor Presentation",
+    type: "demo-session",
+    image: "/images/sponsors/TelinPro.webp",
+    description: "TelinPro",
   },
+  
   {
-    id: 23,
+    id: 22,
     time: "01:30 PM - 02:00 PM",
     title: "Session 4",
     type: "session",
@@ -662,7 +664,7 @@ export const AGENDA_DAY_2 = [
     description: "Modernizing Public Investment Services: Building Fast, Transparent, and Integrated Digital Systems for Global Competitiveness",
   },
   {
-    id: 24,
+    id: 23,
     time: "02:00 PM - 02:30 PM",
     title: "Session 5",
     type: "session",
@@ -676,7 +678,7 @@ export const AGENDA_DAY_2 = [
     description: "Strengthening Indonesia’s Cyber Resilience: Strategic Policy, Industry Coordination, and Infrastructure Protection in the AI Era",
   },
   {
-    id: 25,
+    id: 24,
     time: "02:30 PM - 03:00 PM",
     title: "Session 6",
     type: "session",
@@ -690,7 +692,7 @@ export const AGENDA_DAY_2 = [
     description: "Healthcare Transformation at Scale: Building a Smart, Agile, and Efficient National Hospital Network",
   },
   {
-    id: 26,
+    id: 25,
     time: "03:00 PM - 03:40 PM",
     title: "Session 7",
     type: "session",
@@ -718,7 +720,7 @@ export const AGENDA_DAY_2 = [
     description: "Fireside Chat - Driving Intelligent Transformation: Lessons from Leading Industries",
   },
   {
-    id: 27,
+    id: 26,
     time: "03:40 PM - 04:20 PM",
     title: "Session 8 : Roundtable Discussions",
     type: "roundtable",
