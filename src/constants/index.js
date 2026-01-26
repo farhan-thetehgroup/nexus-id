@@ -208,6 +208,16 @@ export const PARTNERS = [
     src: "/images/sponsors/TelinPro.webp",
     alt: "Telin Pro",
     url: "https://www.telin.net/en",
+  },
+  {
+    src: "/images/sponsors/Equinix.webp",
+    alt: "Equinix",
+    url: "https://www.equinix.com/",
+  },
+  {
+    src: "/images/sponsors/Datadog.webp",
+    alt: "Datadog",
+    url: "https://www.datadoghq.com/",
   }
 ];
 
