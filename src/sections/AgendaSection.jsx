@@ -6,6 +6,16 @@ import { useRef } from "react";
 import { Calendar, Clock, Coffee, UtensilsCrossed, Mic, User, UserPlus, Users, Wine } from "lucide-react";
 import { AGENDA_DAY_1, AGENDA_DAY_2 } from "../constants";
 
+const SpeakerAvatarWithTooltip = ({ speaker, children, className = "" }) => (
+  <div className={`relative group/tooltip inline-block ${className}`}>
+    {children}
+    <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-2 bg-slate-800/95 border border-emerald-500/40 rounded-lg shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-[100] min-w-[160px] max-w-[220px] text-center pointer-events-none backdrop-blur-sm">
+      <p className="font-semibold text-white text-sm">{speaker.name}</p>
+      {speaker.role && <p className="text-gray-400 text-xs mt-0.5 break-words whitespace-normal">{speaker.role}</p>}
+    </div>
+  </div>
+);
+
 const AgendaRow = ({ agendaItem, index }) => {
   const isBreak = agendaItem.type === "break";
   const isRegistration = agendaItem.type === "registration";
@@ -46,16 +56,16 @@ const AgendaRow = ({ agendaItem, index }) => {
             <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {agendaItem.roundtables.flatMap((roundtable, rIdx) =>
                 roundtable.speakers && roundtable.speakers.length > 0
-                  ? roundtable.speakers.map((speaker, sIdx) => (
-                      <div
-                        key={`${rIdx}-${sIdx}`}
-                        className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 sm:border-4 border-cyan-500/50 group-hover:border-cyan-400 transition-colors duration-300">
-                        <img
-                          alt={speaker.name}
-                          className="w-full h-full object-cover"
-                          src={speaker.image}
-                        />
-                      </div>
+                  ?               roundtable.speakers.map((speaker, sIdx) => (
+                      <SpeakerAvatarWithTooltip key={`${rIdx}-${sIdx}`} speaker={speaker}>
+                        <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 sm:border-4 border-cyan-500/50 group-hover:border-cyan-400 transition-colors duration-300">
+                          <img
+                            alt={speaker.name}
+                            className="w-full h-full object-cover"
+                            src={speaker.image}
+                          />
+                        </div>
+                      </SpeakerAvatarWithTooltip>
                     ))
                   : []
               )}
@@ -79,6 +89,34 @@ const AgendaRow = ({ agendaItem, index }) => {
           ) : agendaItem.moderator && agendaItem.speakers && agendaItem.speakers.length > 0 ? (
             /* Panel Discussion */
             <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <SpeakerAvatarWithTooltip speaker={agendaItem.moderator}>
+                <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 sm:border-4 border-purple-500/50 group-hover:border-purple-400 transition-colors duration-300">
+                  <img
+                    alt={agendaItem.moderator.name}
+                    className="w-full h-full object-cover"
+                    src={agendaItem.moderator.image}
+                  />
+                  <div className="absolute -bottom-0.5 -right-0.5 sm:-bottom-1 sm:-right-1 bg-purple-500 rounded-full p-0.5 sm:p-1 border border-slate-900 sm:border-2">
+                    <User className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
+                  </div>
+                </div>
+              </SpeakerAvatarWithTooltip>
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                {agendaItem.speakers.map((speaker, idx) => (
+                  <SpeakerAvatarWithTooltip key={idx} speaker={speaker}>
+                    <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 sm:border-4 border-blue-500/50 group-hover:border-blue-400 transition-colors duration-300">
+                      <img
+                        alt={speaker.name}
+                        className="w-full h-full object-cover"
+                        src={speaker.image}
+                      />
+                    </div>
+                  </SpeakerAvatarWithTooltip>
+                ))}
+              </div>
+            </div>
+          ) : agendaItem.moderator ? (
+            <SpeakerAvatarWithTooltip speaker={agendaItem.moderator}>
               <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 sm:border-4 border-purple-500/50 group-hover:border-purple-400 transition-colors duration-300">
                 <img
                   alt={agendaItem.moderator.name}
@@ -86,57 +124,35 @@ const AgendaRow = ({ agendaItem, index }) => {
                   src={agendaItem.moderator.image}
                 />
                 <div className="absolute -bottom-0.5 -right-0.5 sm:-bottom-1 sm:-right-1 bg-purple-500 rounded-full p-0.5 sm:p-1 border border-slate-900 sm:border-2">
-                  <User className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
+                  <Mic className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
                 </div>
               </div>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {agendaItem.speakers.map((speaker, idx) => (
-                  <div
-                    key={idx}
-                    className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 sm:border-4 border-blue-500/50 group-hover:border-blue-400 transition-colors duration-300">
+            </SpeakerAvatarWithTooltip>
+          ) : agendaItem.speaker ? (
+            <SpeakerAvatarWithTooltip speaker={agendaItem.speaker}>
+              <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 sm:border-4 border-emerald-500/50 group-hover:border-emerald-400 transition-colors duration-300">
+                <img
+                  alt={agendaItem.speaker.name}
+                  className="w-full h-full object-cover"
+                  src={agendaItem.speaker.image}
+                />
+                <div className="absolute -bottom-0.5 -right-0.5 sm:-bottom-1 sm:-right-1 bg-emerald-500 rounded-full p-0.5 sm:p-1 border border-slate-900 sm:border-2">
+                  <Mic className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
+                </div>
+              </div>
+            </SpeakerAvatarWithTooltip>
+          ) : agendaItem.speakers && agendaItem.speakers.length > 0 ? (
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              {agendaItem.speakers.map((speaker, idx) => (
+                <SpeakerAvatarWithTooltip key={idx} speaker={speaker}>
+                  <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 sm:border-4 border-blue-500/50 group-hover:border-blue-400 transition-colors duration-300">
                     <img
                       alt={speaker.name}
                       className="w-full h-full object-cover"
                       src={speaker.image}
                     />
                   </div>
-                ))}
-              </div>
-            </div>
-          ) : agendaItem.moderator ? (
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 sm:border-4 border-purple-500/50 group-hover:border-purple-400 transition-colors duration-300">
-              <img
-                alt={agendaItem.moderator.name}
-                className="w-full h-full object-cover"
-                src={agendaItem.moderator.image}
-              />
-              <div className="absolute -bottom-0.5 -right-0.5 sm:-bottom-1 sm:-right-1 bg-purple-500 rounded-full p-0.5 sm:p-1 border border-slate-900 sm:border-2">
-                <Mic className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
-              </div>
-            </div>
-          ) : agendaItem.speaker ? (
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 sm:border-4 border-emerald-500/50 group-hover:border-emerald-400 transition-colors duration-300">
-              <img
-                alt={agendaItem.speaker.name}
-                className="w-full h-full object-cover"
-                src={agendaItem.speaker.image}
-              />
-              <div className="absolute -bottom-0.5 -right-0.5 sm:-bottom-1 sm:-right-1 bg-emerald-500 rounded-full p-0.5 sm:p-1 border border-slate-900 sm:border-2">
-                <Mic className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
-              </div>
-            </div>
-          ) : agendaItem.speakers && agendaItem.speakers.length > 0 ? (
-            <div className="flex flex-wrap gap-1.5 sm:gap-2">
-              {agendaItem.speakers.map((speaker, idx) => (
-                <div
-                  key={idx}
-                  className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 sm:border-4 border-blue-500/50 group-hover:border-blue-400 transition-colors duration-300">
-                  <img
-                    alt={speaker.name}
-                    className="w-full h-full object-cover"
-                    src={speaker.image}
-                  />
-                </div>
+                </SpeakerAvatarWithTooltip>
               ))}
             </div>
           ) : null}

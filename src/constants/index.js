@@ -395,7 +395,7 @@ export const SPEAKERS = [
   {
     id: 19,
     fullName: "Nelish Jain",
-    // jobTitle: "Head of IT",
+    jobTitle: "Co-Founder and CEO",
     company: "Clean Start",
     image: "/images/speakers/Nelish-Jain.webp",
   },
@@ -420,6 +420,13 @@ export const SPEAKERS = [
     company: "Sinarmas Land",
     image: "/images/speakers/Donny-Wu.webp",
   },
+  {
+    id: 23,
+    fullName: "James Leong",
+    jobTitle: "Ceo and Founder",
+    company: "Xtremax",
+    image: "/images/speakers/James-Leong.webp",
+  }
 ];
 
 export const AGENDA_DAY_1 = [
@@ -476,7 +483,7 @@ export const AGENDA_DAY_1 = [
       {
         name: "Nelish Jain",
         image: "/images/speakers/Nelish-Jain.webp",
-        role: "Clean Start",
+        role: "Co-Founder and CEO -Clean Start",
       },
     ],
   },
@@ -486,6 +493,13 @@ export const AGENDA_DAY_1 = [
     title: "Sponsor Presentation",
     type: "demo-session",
     image: "/images/sponsors/XTREMAX.webp",
+    speakers: [
+      {
+        name: "James Leong",
+        image: "/images/speakers/James-Leong.webp",
+        role: "Ceo and Founder - Xtremax",
+      },
+    ],
   },
   {
     id: 6,
