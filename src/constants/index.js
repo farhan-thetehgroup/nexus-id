@@ -761,7 +761,7 @@ export const AGENDA_DAY_2 = [
         ]
       },
       {
-        title: "Roundtable 3",
+        title: `Roundtable 3 - "Leveraging Generative AI to Personalize Customer Experience in Life Sciences and Healthcare"`,
         speakers: [
           {
             name: `Widianty`,
