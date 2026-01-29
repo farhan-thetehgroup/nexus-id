@@ -73,7 +73,7 @@ const eventFormats = [
   {
     id: 3,
     icon: Mic2,
-    title: "Insightfull Conference",
+    title: "Insightful Conference",
     description:
       "Industry leaders share insights on emerging trends, best practices, and future innovations in the technology landscape.",
     features: [
