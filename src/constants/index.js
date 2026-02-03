@@ -210,11 +210,6 @@ export const PARTNERS = [
     url: "https://www.tictag.io/id/",
   },
   {
-    src: "/images/sponsors/Volantis.webp",
-    alt: "Volantis",
-    url: "https://www.volantis.io/",
-  },
-  {
     src: "/images/sponsors/Ofisgate.webp",
     alt: "Ofisgate",
     url: "https://ofisgate.com/",
@@ -365,13 +360,6 @@ export const SPEAKERS = [
     image: "/images/speakers/Surya-Adhi.webp",
   },
   {
-    id: 14,
-    fullName: "Sigit Triwibowo",
-    jobTitle: "Head of IT and Digital",
-    company: "IKEA",
-    image: "/images/speakers/Sigit-Triwibowo.webp",
-  },
-  {
     id: 16,
     fullName: "Darmadi",
     jobTitle: "Chief Information Officer",
@@ -500,6 +488,7 @@ export const AGENDA_DAY_1 = [
         role: "Ceo and Founder - Xtremax",
       },
     ],
+    description: "Bridging the Gaps in AI Adaption",
   },
   {
     id: 6,
@@ -514,6 +503,7 @@ export const AGENDA_DAY_1 = [
       },
     ],
     image: "/images/sponsors/Tanium.webp",
+    description: "Stay Ready So You Don’t Need to Get Ready",
   },
   {
     id: 7,
@@ -528,6 +518,7 @@ export const AGENDA_DAY_1 = [
       },
     ],
     image: "/images/sponsors/Semperis.webp",
+    description: "Mitigating Risk to the #1 Target for Attackers: Your Enterprise Identity System",
   },
   {
     id: 8,
@@ -725,11 +716,6 @@ export const AGENDA_DAY_2 = [
         name: `Surya Adhi Saputra`,
         image: "/images/speakers/Surya-Adhi.webp",
         role: `Country Digital and Technology Head for Indonesia, Philippines, and Thailand - Haleon`,
-      },
-      {
-        name: `Sigit Triwibowo`,
-        image: "/images/speakers/Sigit-Triwibowo.webp",
-        role: `Head of IT and Digital - IKEA`,
       }
     ],
     description: "Fireside Chat - Driving Intelligent Transformation: Lessons from Leading Industries",

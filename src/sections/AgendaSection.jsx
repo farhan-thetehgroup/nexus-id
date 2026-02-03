@@ -198,6 +198,13 @@ const AgendaRow = ({ agendaItem, index }) => {
                 {agendaItem.title}
               </h3>
 
+              {/* Description for demo-session */}
+              {isDemoSession && agendaItem.description && (
+                <p className="text-gray-400 text-sm sm:text-sm mb-1.5 sm:mb-2 group-hover:text-gray-300 transition-colors duration-300 break-words">
+                  {agendaItem.description}
+                </p>
+              )}
+
               {/* Speaker/Moderator Info */}
               {!isBreak && !isRegistration && !isMeeting && !isDemoSession && (
                 <div className="mb-1.5 sm:mb-2 space-y-1">
@@ -237,8 +244,8 @@ const AgendaRow = ({ agendaItem, index }) => {
                 </div>
               )}
 
-              {/* Description */}
-              {agendaItem.description && (
+              {/* Description (for non–demo-session; demo-session uses block above) */}
+              {agendaItem.description && !isDemoSession && (
                 <p className="text-gray-400 text-sm sm:text-sm group-hover:text-gray-300 transition-colors duration-300 break-words">
                   {agendaItem.description}
                 </p>
