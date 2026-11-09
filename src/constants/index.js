@@ -300,7 +300,7 @@ export const SUPPORTED_BY = [
 export const LOCATION_DATA = {
   title: "Royal Tulip Gunung Geulis Resort and Golf",
   address: "Jl. Bukit Geulis, Nagrak, Gadog-Bogor, Kabupaten Bogor, Jawa Barat 16720",
-  date: "4-5 February 2026",
+  date: "24 March 2027",
   room: "Royal Tulip Ballroom South, Royal Tulip Ballroom West, Royal Tulip Ballroom East",
   // image: "/images/venue/jakarta.webp", // Main image displayed in the section
   images: [
