@@ -12,6 +12,7 @@ import { SpeakersSection } from "../sections/SpeakersSection";
 import { EventFormatSection } from "../sections/EventFormatSection";
 import { AgendaSection } from "../sections/AgendaSection";
 import { LocationSection } from "../sections/LocationSection";
+import { RegisterSection } from "../sections/RegisterSection";
 import { FooterSection } from "../sections/FooterSection";
 import ContactFormSection from "../sections/ContactFormSection";
 
@@ -49,6 +50,7 @@ export const HomePage = () => {
       <EventFormatSection />
       <AgendaSection />
       <LocationSection />
+      <RegisterSection />
       <ContactFormSection />
       <FooterSection />
     </main>

@@ -14,6 +14,29 @@ export const BRAND_LOGO_WHITE = "/images/brand-logo/nexus-teh-white.svg";
 export const SPEED_PARTNERS_MARQUEE = 300000; // kecepatan scroll (ms)
 export const LINK_REGISTER =
   "https://event.thetehgroup.com/-nexus-indonesia-2026/overview?token=ZT1jNTU3N2JiMy0wOTJkLTRjNjUtODIyNi0zMjUzODEwNDE4NGUmcmM9MUVFU0JEQkRQQg%3d%3d";
+
+export const VIP_REGISTRATION_URL =
+  "https://event.thetehgroup.com/nexus-indonesia-2027/overview?token=ZT0zNjczM2RmYi1iNjVlLTQzMmMtYjVmZi03YTk4ZDExZDQxMGYmcmM9VjhYNDZEWVI1MQ%3d%3d";
+
+export const CONFERENCE_ONLY_REGISTRATION_URL =
+  "https://event.thetehgroup.com/nexus-indonesia-2027-conference/overview?token=ZT1iZjE5N2VmYS05NTc1LTRiODUtOTgzNS02NWY0MzlkNTI1NTUmcmM9VTJJNUoyM0VNUg%3d%3d";
+
+export const TICKET_OPTIONS = [
+  {
+    id: "vip",
+    eyebrow: "Premium access",
+    title: "VIP",
+    copy: "Priority access and the full Nexus Indonesia 2027 experience.",
+    href: VIP_REGISTRATION_URL,
+  },
+  {
+    id: "conference-only",
+    eyebrow: "Conference pass",
+    title: "Conference Only",
+    copy: "Access to the full-day conference program.",
+    href: CONFERENCE_ONLY_REGISTRATION_URL,
+  },
+];
 export const TEASER_URL =
   "https://cyberattack-event.com/wp-content/uploads/2024/10/CA-MY-EVENT-DRAFT-2.mp4";
 

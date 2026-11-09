@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-import { BRAND_LOGO_WHITE, MENU_ITEMS, LINK_REGISTER } from "../constants";
+import { BRAND_LOGO_WHITE, MENU_ITEMS } from "../constants";
 import { GlassButton } from "./common/ui/GlassButton";
 
 export const AdvancedNavbar = ({ scrollToSection, items = MENU_ITEMS }) => {
@@ -71,11 +71,6 @@ export const AdvancedNavbar = ({ scrollToSection, items = MENU_ITEMS }) => {
   }, [items]);
 
   const handleNavClick = (id) => {
-    if (id === "register") {
-      window.open(LINK_REGISTER.trim(), "_blank", "noopener,noreferrer");
-      setIsMenuOpen(false);
-      return;
-    }
     scrollToSection(id);
     setIsMenuOpen(false);
     setActiveSection(id);

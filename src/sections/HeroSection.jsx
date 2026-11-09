@@ -5,7 +5,7 @@ import dotMapDense from "../components/aurora/dotMapDense.json";
 import { NexusWordmarkSvg } from "../components/aurora/NexusWordmarkSvg";
 import { GlassButton } from "../components/common/ui/GlassButton";
 import { Typewriter } from "../components/common/ui/Typewriter";
-import { LOCATION_DATA, LINK_REGISTER } from "../constants";
+import { LOCATION_DATA } from "../constants";
 
 const TECH_PILLARS = [
   { icon: BrainCircuit, label: "Artificial Intelligence" },
@@ -87,11 +87,9 @@ export const HeroSection = ({ motion = true, scrollToSection }) => {
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col items-center gap-3 sm:flex-row">
             <GlassButton
-              as="a"
+              as="button"
               className="nx-rise gap-3 px-8 py-4"
-              href={LINK_REGISTER.trim()}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => scrollToSection?.("register")}
               tone="emerald"
               style={{ "--nx-delay": "380ms" }}>
               <span className="nx-meta nx-meta--bright">Register Now</span>
