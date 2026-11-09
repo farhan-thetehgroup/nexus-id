@@ -1,0 +1,28 @@
+/* Sponsor marquee: pure-CSS loop, pauses in place while hovered */
+.nx-marquee-track {
+  animation: nx-marquee var(--nx-marquee-duration, 40s) linear infinite;
+  will-change: transform;
+}
+
+.nx-marquee-track--reverse {
+  animation-direction: reverse;
+}
+
+.nx-marquee-row:hover .nx-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes nx-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-marquee-track {
+    animation: none;
+  }
+}
