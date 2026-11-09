@@ -48,7 +48,7 @@ export const GalleryModal = ({
       initial={{ opacity: 0 }}>
       {/* Gradient + blur overlay */}
       <motion.div
-        className={`absolute inset-0 backdrop-blur-[6px] ${backdropGradient ? `bg-gradient-to-br ${backdropGradient}` : "bg-gradient-to-br from-brand-900/80 via-tech-green-700/70 to-tech-green-900"}`}
+        className={`absolute inset-0 backdrop-blur-[6px] ${backdropGradient ? `bg-gradient-to-br ${backdropGradient}` : "bg-gradient-to-br from-[#03101a]/92 via-[#062030]/88 to-[#03101a]/94"}`}
         onClick={onClose}
         style={{ opacity: 0.95 }}
       />
@@ -125,7 +125,7 @@ export const GalleryModal = ({
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`relative h-14 w-24 flex-shrink-0 overflow-hidden rounded-lg ring-2 transition-all ${
                     idx === i ?
-                      "ring-[var(--color-brand-400)]"
+                      "ring-white/60"
                     : "ring-white/10"
                   }`}
                   key={idx}

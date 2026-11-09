@@ -216,6 +216,34 @@ export const PARTNERS = [
   },
 ];
 
+export const EVENT_FORMAT_GALLERY = {
+  oneOnOne: [
+    { src: "/images/event-formats/one-on-one.jpg", alt: "One-on-one meeting setup" },
+    { src: "/images/event-formats/one-on-one-2.jpg", alt: "Expert consultation session" },
+    { src: "/images/event-formats/one-on-one-3.jpg", alt: "Expert consultation session" },
+  ],
+  liveDemo: [
+    { src: "/images/event-formats/live-demo-1.jpg", alt: "Live demonstration session" },
+    { src: "/images/event-formats/live-demo-2.jpg", alt: "Product showcase" },
+    { src: "/images/event-formats/live-demo-3.jpg", alt: "Technical demo" },
+  ],
+  workshop: [
+    { src: "/images/event-formats/workshop-1.jpg", alt: "Interactive workshop" },
+    { src: "/images/event-formats/workshop-2.jpg", alt: "Group activity" },
+    { src: "/images/event-formats/workshop-3.jpg", alt: "Hands-on session" },
+  ],
+  conference: [
+    { src: "/images/event-formats/conference-1.jpg", alt: "Keynote Speaker" },
+    { src: "/images/event-formats/conference-2.jpg", alt: "Panel Discussion" },
+    { src: "/images/event-formats/conference-3.jpg", alt: "Fireside Chat" },
+  ],
+  exhibition: [
+    { src: "/images/event-formats/exhibition-1.jpg", alt: "Exhibition hall" },
+    { src: "/images/event-formats/exhibition-2.jpg", alt: "Exhibition hall" },
+    { src: "/images/event-formats/exhibition-3.jpg", alt: "Exhibition hall" },
+  ],
+};
+
 export const SUPPORTED_BY = [
   // Add government logos here
   // Example structure:

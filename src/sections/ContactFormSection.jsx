@@ -19,6 +19,12 @@ import {
 } from "lucide-react";
 
 import {
+  MaskedLine,
+  useSectionEntry,
+} from "../components/common/ui/SectionEntry";
+import { GlowField } from "../components/common/ui/GlowField";
+import { GlassButton } from "../components/common/ui/GlassButton";
+import {
   EMAIL,
   MAILTO_URL,
   PHONE_WHATSAPP,
@@ -209,31 +215,42 @@ const ContactForm = () => {
 
   const inputClasses = (hasError) =>
     [
-      "w-full px-4 py-3 rounded-xl bg-slate-800/50 border text-white placeholder-gray-500 focus:outline-none transition-all",
+      "w-full px-4 py-3 rounded-xl bg-white/[0.06] border text-white placeholder-gray-500 focus:outline-none transition-colors",
       hasError ?
-        "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
-      : "border-slate-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20",
+        "border-red-500/70 focus:border-red-400 focus:ring-2 focus:ring-red-500/20"
+      : "border-white/15 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20",
     ].join(" ");
 
   return (
     <motion.div
-      className="max-w-6xl mx-auto"
+      className="mx-auto max-w-4xl"
       initial={{ opacity: 0, y: 40 }}
       transition={{ duration: 0.8 }}
       whileInView={{ opacity: 1, y: 0 }}>
-      <div className="relative bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-xl rounded-3xl border border-emerald-500/30 overflow-hidden p-8 md:p-12">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-bl-full opacity-10" />
+      <div className="nx-glass-pane relative overflow-hidden p-8 md:p-12">
+        <div className="absolute top-0 right-0 h-64 w-64 rounded-bl-full bg-gradient-to-br from-cyan-500/20 to-emerald-500/10 blur-2xl" />
 
         <div className="relative z-10">
           {/* Header */}
-          <div className="text-center mb-8">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">
+          <div className="mb-8 text-center">
+            <motion.div
+              className="nx-glass-chip mb-4 inline-flex items-center gap-2 px-4 py-2"
+              initial={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              whileInView={{ opacity: 1, y: 0 }}>
+              <Mail className="h-4 w-4 text-cyan-300" />
+              <span className="text-sm font-medium text-cyan-300">
+                Sponsorship Inquiry
+              </span>
+            </motion.div>
+
+            <h3 className="mb-3 text-3xl font-bold text-white md:text-4xl">
               Get in Touch with{" "}
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent">
                 {contactInfo.name}
               </span>
             </h3>
-            <p className="text-gray-400">
+            <p className="text-white/60">
               Fill out the form below and we'll get back to you within 24 hours
             </p>
           </div>
@@ -242,10 +259,10 @@ const ContactForm = () => {
           {status === "success" && (
             <motion.div
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/50 flex items-center gap-3"
+              className="mb-6 flex items-center gap-3 rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-4"
               initial={{ opacity: 0, y: -20 }}>
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-              <p className="text-emerald-400 font-medium">
+              <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-emerald-300" />
+              <p className="font-medium text-emerald-300">
                 {statusMessage ||
                   "Message sent successfully! We'll contact you soon."}
               </p>
@@ -255,10 +272,10 @@ const ContactForm = () => {
           {status === "error" && (
             <motion.div
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 p-4 rounded-xl bg-red-500/20 border border-red-500/50 flex items-center gap-3"
+              className="mb-6 flex items-center gap-3 rounded-xl border border-red-400/30 bg-red-500/10 p-4"
               initial={{ opacity: 0, y: -20 }}>
-              <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-              <p className="text-red-400 font-medium">
+              <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-300" />
+              <p className="font-medium text-red-300">
                 {statusMessage ||
                   "Failed to send message. Please try again or email us directly."}
               </p>
@@ -267,11 +284,11 @@ const ContactForm = () => {
 
           {/* Form */}
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid gap-6 md:grid-cols-2">
               {/* Name */}
               <div>
-                <label className="block text-gray-300 font-medium mb-2 flex items-center gap-2">
-                  <User className="w-4 h-4 text-cyan-400" />
+                <label className="mb-2 flex items-center gap-2 font-medium text-white/70">
+                  <User className="h-4 w-4 text-cyan-300" />
                   Full Name *
                 </label>
                 <input
@@ -284,7 +301,7 @@ const ContactForm = () => {
                   value={formData.from_name}
                 />
                 {fieldErrors.from_name && (
-                  <p className="mt-2 text-sm text-red-400">
+                  <p className="mt-2 text-sm text-red-300">
                     {fieldErrors.from_name}
                   </p>
                 )}
@@ -292,8 +309,8 @@ const ContactForm = () => {
 
               {/* Email */}
               <div>
-                <label className="block text-gray-300 font-medium mb-2 flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-cyan-400" />
+                <label className="mb-2 flex items-center gap-2 font-medium text-white/70">
+                  <Mail className="h-4 w-4 text-cyan-300" />
                   Email Address *
                 </label>
                 <input
@@ -306,7 +323,7 @@ const ContactForm = () => {
                   value={formData.from_email}
                 />
                 {fieldErrors.from_email && (
-                  <p className="mt-2 text-sm text-red-400">
+                  <p className="mt-2 text-sm text-red-300">
                     {fieldErrors.from_email}
                   </p>
                 )}
@@ -314,8 +331,8 @@ const ContactForm = () => {
 
               {/* Phone */}
               <div>
-                <label className="block text-gray-300 font-medium mb-2 flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-cyan-400" />
+                <label className="mb-2 flex items-center gap-2 font-medium text-white/70">
+                  <Phone className="h-4 w-4 text-cyan-300" />
                   Phone Number
                 </label>
                 <input
@@ -327,7 +344,7 @@ const ContactForm = () => {
                   value={formData.phone}
                 />
                 {fieldErrors.phone && (
-                  <p className="mt-2 text-sm text-red-400">
+                  <p className="mt-2 text-sm text-red-300">
                     {fieldErrors.phone}
                   </p>
                 )}
@@ -335,8 +352,8 @@ const ContactForm = () => {
 
               {/* Company */}
               <div>
-                <label className="block text-gray-300 font-medium mb-2 flex items-center gap-2">
-                  <Building2 className="w-4 h-4 text-cyan-400" />
+                <label className="mb-2 flex items-center gap-2 font-medium text-white/70">
+                  <Building2 className="h-4 w-4 text-cyan-300" />
                   Company Name
                 </label>
                 <input
@@ -348,7 +365,7 @@ const ContactForm = () => {
                   value={formData.company}
                 />
                 {fieldErrors.company && (
-                  <p className="mt-2 text-sm text-red-400">
+                  <p className="mt-2 text-sm text-red-300">
                     {fieldErrors.company}
                   </p>
                 )}
@@ -357,77 +374,73 @@ const ContactForm = () => {
 
             {/* Message */}
             <div>
-              <label className="block text-gray-300 font-medium mb-2 flex items-center gap-2">
-                <MessageCircle className="w-4 h-4 text-cyan-400" />
+              <label className="mb-2 flex items-center gap-2 font-medium text-white/70">
+                <MessageCircle className="h-4 w-4 text-cyan-300" />
                 Message *
               </label>
               <textarea
                 className={[
-                  "w-full px-4 py-3 rounded-xl bg-slate-800/50 border text-white placeholder-gray-500 focus:outline-none transition-all resize-none",
+                  "w-full px-4 py-3 rounded-xl bg-white/[0.06] border text-white placeholder-gray-500 focus:outline-none transition-colors resize-none",
                   fieldErrors.message ?
-                    "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
-                  : "border-slate-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20",
+                    "border-red-500/70 focus:border-red-400 focus:ring-2 focus:ring-red-500/20"
+                  : "border-white/15 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20",
                 ].join(" ")}
                 name="message"
                 onChange={handleChange}
-                placeholder="Tell us about your inquiry..."
+                placeholder="Tell us about your sponsorship interests and goals..."
                 required
                 rows={6}
                 value={formData.message}
               />
               {fieldErrors.message && (
-                <p className="mt-2 text-sm text-red-400">
+                <p className="mt-2 text-sm text-red-300">
                   {fieldErrors.message}
                 </p>
               )}
             </div>
 
             {/* Submit Button */}
-            <motion.button
-              className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
+            <GlassButton
+              className="w-full justify-center gap-3 py-4 font-bold text-white disabled:cursor-not-allowed disabled:opacity-50"
               disabled={loading}
-              type="submit"
-              whileHover={!loading ? { scale: 1.02 } : {}}
-              whileTap={!loading ? { scale: 0.98 } : {}}>
+              tone="emerald"
+              type="submit">
               {loading ?
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loader2 className="h-5 w-5 animate-spin" />
                   <span>Sending...</span>
                 </>
               : <>
-                  <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <Send className="h-5 w-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
                   <span>Send Message</span>
                 </>
               }
-            </motion.button>
+            </GlassButton>
 
             {/* Contact Info */}
-            <div className="pt-6 border-t border-slate-700">
-              <p className="text-center text-gray-400 text-sm mb-4">
+            <div className="border-t border-white/10 pt-6">
+              <p className="mb-4 text-center text-sm text-white/50">
                 Or reach out directly:
               </p>
               <div className="flex flex-wrap items-center justify-center gap-6">
                 <a
-                  className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
+                  className="flex items-center gap-2 text-cyan-300 transition-colors hover:text-cyan-200"
                   href={MAILTO_URL}>
-                  <Mail className="w-4 h-4" />
+                  <Mail className="h-4 w-4" />
                   <span className="text-sm font-medium">{EMAIL}</span>
                 </a>
                 <a
-                  className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
+                  className="flex items-center gap-2 text-cyan-300 transition-colors hover:text-cyan-200"
                   href={`https://api.whatsapp.com/send?phone=${PHONE_WHATSAPP}&text=${WHATSAPP_MESSAGE}`}
                   rel="noopener noreferrer"
                   target="_blank">
-                  <Phone className="w-4 h-4" />
+                  <Phone className="h-4 w-4" />
                   <span className="text-sm font-medium">{PHONE_WHATSAPP}</span>
                 </a>
               </div>
             </div>
           </form>
         </div>
-
-        {/* Decorative gradient line */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500" />
       </div>
     </motion.div>
   );
@@ -445,20 +458,24 @@ const HashtagBadge = ({ tag, index }) => {
   return (
     <motion.div
       className="cursor-pointer"
-      initial={{ opacity: 0, scale: 0 }}
+      initial={{ opacity: 0, y: 10 }}
       onClick={handleCopy}
-      transition={{ delay: index * 0.1, type: "spring", stiffness: 300 }}
-      whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{
+        delay: index * 0.1,
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      whileHover={{ scale: 1.06 }}
+      whileInView={{ opacity: 1, y: 0 }}
       whileTap={{ scale: 0.95 }}>
-      <div className="px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/40 hover:border-emerald-400/70 backdrop-blur-sm transition-all duration-300 flex items-center gap-2 group">
-        <Hash className="w-4 h-4 text-emerald-400 group-hover:text-cyan-400 transition-colors" />
-        <span className="font-semibold text-white group-hover:text-emerald-400 transition-colors">
+      <div className="nx-glass-chip group flex cursor-pointer items-center gap-2 px-5 py-2.5 transition-colors duration-300 hover:border-white/30">
+        <Hash className="h-4 w-4 text-emerald-300 transition-colors group-hover:text-cyan-300" />
+        <span className="font-semibold text-white">
           {tag.substring(1)}
         </span>
         {copied && (
           <motion.div animate={{ scale: 1 }} initial={{ scale: 0 }}>
-            <Check className="w-4 h-4 text-emerald-400" />
+            <Check className="h-4 w-4 text-emerald-300" />
           </motion.div>
         )}
       </div>
@@ -468,81 +485,83 @@ const HashtagBadge = ({ tag, index }) => {
 
 export default function ContactFormSection() {
   const containerRef = useRef(null);
+  const entry = useSectionEntry();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const headerY = useTransform(scrollYProgress, [0, 0.3], [100, 0]);
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center py-20 px-4 overflow-hidden"
+      className="relative flex min-h-screen items-center justify-center px-4 py-32"
       id="contact"
       ref={containerRef}>
-      <motion.div
-        className="absolute inset-0 opacity-20"
-        style={{ y: backgroundY }}>
-        <div className="absolute top-20 left-20 w-96 h-96 bg-cyan-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-emerald-500/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-3xl" />
-      </motion.div>
+      <GlowField
+        className="opacity-55"
+        style={{ y: backgroundY }}
+        blobs={[
+          {
+            className: "top-[16%] left-[10%] w-[420px] h-[420px] bg-cyan-500/25",
+          },
+          {
+            className:
+              "bottom-[16%] right-[10%] w-[380px] h-[380px] bg-emerald-500/25",
+          },
+          {
+            className:
+              "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[520px] bg-blue-500/15",
+          },
+          {
+            className: "-top-40 right-[30%] w-[380px] h-[380px] bg-cyan-500/15",
+          },
+        ]}
+      />
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05)_0%,transparent_100%)]" />
 
-      <div className="max-w-screen-2xl mx-auto relative z-10 w-full">
-        <motion.div
-          className="text-center mb-16"
-          style={{ y: headerY, opacity: headerOpacity }}>
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl">
+        <div className="mb-20 text-center">
           <motion.div
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 border border-cyan-500/40 mb-6 backdrop-blur-sm"
-            initial={{ scale: 0, rotate: -180 }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            whileInView={{ scale: 1, rotate: 0 }}>
-            <MessageCircle className="w-5 h-5 text-cyan-400" />
-            <span className="text-cyan-400 font-semibold">Get in Touch</span>
+            className="nx-glass-chip mb-6 inline-flex items-center gap-2 px-4 py-2"
+            {...entry.fade(0, 14, 0.6)}>
+            <MessageCircle className="h-5 w-5 text-cyan-300" />
+            <span className="font-semibold text-cyan-300">Get in Touch</span>
           </motion.div>
 
-          <motion.h2
-            className="text-5xl md:text-7xl font-bold mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            whileInView={{ opacity: 1, y: 0 }}>
-            <span className="bg-gradient-to-r from-cyan-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
-            Contact Us
-            </span>
-          </motion.h2>
+          <h2 className="mb-6 text-5xl font-bold md:text-7xl">
+            <MaskedLine delay={0.1}>
+              <span className="bg-gradient-to-r from-cyan-300 via-emerald-300 to-teal-300 bg-clip-text text-transparent">
+                Contact Us
+              </span>
+            </MaskedLine>
+          </h2>
 
           <motion.p
-            className="text-xl text-gray-400 max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            whileInView={{ opacity: 1 }}>
+            className="mx-auto max-w-3xl text-xl text-white/70"
+            {...entry.fade(0.24, 16)}>
             Contact us for inquiries about Nexus APAC Indonesia 2026
           </motion.p>
-        </motion.div>
+        </div>
 
         {/* Contact Form */}
         <ContactForm />
 
         {/* Hashtags Section */}
         <motion.div
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          whileInView={{ opacity: 1, y: 0 }}>
-          <div className="inline-block bg-gradient-to-r from-slate-900/80 to-slate-800/80 backdrop-blur-xl px-10 py-8 rounded-3xl border border-emerald-500/30">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Sparkles className="w-6 h-6 text-emerald-400" />
+          className="mt-20 text-center"
+          {...entry.fade(0.36, 24)}>
+          <div className="nx-glass-pane inline-block px-10 py-8 text-center">
+            <div className="mb-6 flex items-center justify-center gap-3">
+              <Sparkles className="h-6 w-6 text-emerald-300" />
               <h3 className="text-2xl font-bold text-white">
                 Follow the Journey
               </h3>
-              <Sparkles className="w-6 h-6 text-emerald-400" />
+              <Sparkles className="h-6 w-6 text-emerald-300" />
             </div>
 
-            <p className="text-gray-400 mb-6">
+            <p className="mb-6 text-white/60">
               Stay updated with our latest news and events
             </p>
 
@@ -553,7 +572,7 @@ export default function ContactFormSection() {
             </div>
 
             <motion.p
-              className="text-sm text-gray-500 mt-6"
+              className="mt-6 text-sm text-white/40"
               initial={{ opacity: 0 }}
               transition={{ delay: 1 }}
               whileInView={{ opacity: 1 }}>

@@ -2,14 +2,14 @@
 
 /* Root Variables */
 :root {
-  --background: var(--color-brand-50);
-  --foreground: #0a0a0a;
+  --background: #03101a;
+  --foreground: #eaf6f4;
   --color-brand-400-alpha: rgba(59, 130, 246, 0.4); /* brand-500 with alpha */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a1628;
+    --background: #03101a;
     --foreground: #ffffff;
   }
 }
@@ -20,16 +20,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-brand-900);
+  background: #03101a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-brand-500);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-tech-green-500);
+  background: rgba(61, 255, 162, 0.5);
 }
 
 /* Theme Variables */
@@ -171,15 +171,15 @@ body {
 }
 
 .agenda-scrollbar::-webkit-scrollbar-track {
-  background: rgba(16, 185, 129, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
 }
 
 .agenda-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(16, 185, 129, 0.5);
+  background: rgba(61, 255, 162, 0.3);
   border-radius: 10px;
 }
 
 .agenda-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(16, 185, 129, 0.7);
+  background: rgba(61, 255, 162, 0.55);
 }
