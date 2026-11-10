@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 import { useEffect, useRef, useState } from "react";
-import { animate, AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
+import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { Calendar, Clock, Coffee, UtensilsCrossed, Mic, User, UserPlus, Users, Monitor } from "lucide-react";
 
 import {
@@ -10,6 +10,7 @@ import {
 } from "../components/common/ui/SectionEntry";
 import { GlowField } from "../components/common/ui/GlowField";
 import { CursorSpotlight as TabCursorSpotlight } from "../components/common/ui/CursorSpotlight";
+import { GlassButton } from "../components/common/ui/GlassButton";
 import { useMotionPreference } from "../components/aurora/useMotionPreference";
 import { AGENDA_DAY_1, AGENDA_DAY_2, LOCATION_DATA } from "../constants";
 
@@ -459,11 +460,6 @@ const DayTabs = ({ days, activeId, onChange }) => {
 
 export const AgendaSection = () => {
   const entry = useSectionEntry();
-  const [activeDay, setActiveDay] = useState(AGENDA_DAYS[0].id);
-
-  const currentDay =
-    AGENDA_DAYS.find((day) => day.id === activeDay) ?? AGENDA_DAYS[0];
-  const currentAgenda = currentDay.items;
 
   return (
     <section
@@ -534,30 +530,40 @@ export const AgendaSection = () => {
           </div>
         </div>
 
-        {/* Day switcher — Glass Tabs: a stretchy frosted pill slides between tabs */}
-        <div className="mb-8 flex justify-center sm:mb-10">
-          <motion.div {...entry.fade(0.42, 16)}>
-            <DayTabs
-              activeId={activeDay}
-              days={AGENDA_DAYS}
-              onChange={setActiveDay}
-            />
-          </motion.div>
-        </div>
+        {/* 2027 programme still pending: one glass pane instead of the day
+            tabs + agenda rows. AgendaRow / DayTabs above stay in the file
+            untouched — swap this block back when AGENDA_DAY_* lands. */}
+        <div className="mx-auto max-w-3xl">
+          <motion.div
+            className="nx-glass-pane group relative overflow-hidden rounded-3xl px-6 py-12 text-center sm:px-12 sm:py-16"
+            {...entry.rise(0.42, 26)}>
+            <TabCursorSpotlight above size={160} />
 
-        {/* Agenda list — flat glass rows flowing down the page, no scrollable box.
-            Day swaps play in wait mode: the old rows exit one by one first,
-            then the new rows enter one by one. */}
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:gap-4">
-          <AnimatePresence mode="wait">
-            {currentAgenda.map((item, index) => (
-              <AgendaRow
-                agendaItem={item}
-                index={index}
-                key={`${currentDay.id}-${item.id}`}
-              />
-            ))}
-          </AnimatePresence>
+            <div className="mb-5 flex justify-center">
+              <motion.div
+                className="nx-glass-chip inline-flex items-center gap-2 px-4 py-1.5"
+                {...entry.fade(0.52, 12, 0.6)}>
+                <Clock className="h-4 w-4 text-emerald-300" />
+                <span className="[font-family:var(--nx-mono)] text-[0.6rem] font-normal uppercase tracking-[0.22em] text-white sm:text-[0.7rem]">
+                  Coming Soon
+                </span>
+              </motion.div>
+            </div>
+
+            <h3 className="mb-3 text-2xl font-bold text-white sm:mb-4 sm:text-3xl md:text-4xl">
+              The Full Programme Is on Its Way
+            </h3>
+
+            <p className="mx-auto mb-8 max-w-xl text-sm text-white/70 sm:mb-10 sm:text-base">
+              We are finalising the session lineup for {LOCATION_DATA.date} —
+              keynotes, panel discussions, and sponsor demos. Check back soon
+              for the complete two-day agenda.
+            </p>
+
+            <GlassButton as="a" href="#register" className="px-8 py-4" tone="emerald">
+              <span className="nx-meta nx-meta--bright">Register Now</span>
+            </GlassButton>
+          </motion.div>
         </div>
       </div>
     </section>
