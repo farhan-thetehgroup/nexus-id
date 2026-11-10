@@ -1,5 +1,5 @@
 export const MENU_ITEMS = [
-  { name: "Support & Sponsors", id: "supported-by" },
+  { name: "Partners", id: "supported-by" },
   // { name: "Why", id: "why" },
   // { name: "Tour", id: "tours" },
   { name: "Speakers", id: "speakers" },
