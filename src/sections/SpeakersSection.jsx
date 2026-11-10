@@ -52,11 +52,13 @@ const SpeakerCard = ({ speaker, index }) => {
             </div>
 
             {isExclusive && (
-              <span className="nx-glass-chip absolute -top-1 -right-2 z-20 px-3 py-1">
-                <span className="nx-meta text-[0.55rem] text-emerald-300">
-                  Exclusive
+              <div className="absolute inset-x-0 -bottom-3 z-20 flex justify-center">
+                <span className="rounded-full border border-amber-300/40 bg-[#241704]/70 px-3 py-1 shadow-[0_6px_18px_rgba(251,191,36,0.25),inset_0_1px_0_rgba(255,220,150,0.35)] backdrop-blur-md">
+                  <span className="[font-family:var(--nx-mono)] text-[0.55rem] font-normal uppercase tracking-[0.22em] text-amber-300 [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">
+                    Exclusive
+                  </span>
                 </span>
-              </span>
+              </div>
             )}
           </div>
 
