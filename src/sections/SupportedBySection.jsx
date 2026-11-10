@@ -1,13 +1,20 @@
 /* eslint-disable no-undef */
-/* eslint-disable prettier/prettier */
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Building2 } from "lucide-react";
 
+import {
+  MaskedLine,
+  useSectionEntry,
+} from "../components/common/ui/SectionEntry";
+import { GlowField } from "../components/common/ui/GlowField";
+import { DotFieldInteraction } from "../components/common/ui/DotFieldInteraction";
+import { PartnerLogoCard } from "../components/common/ui/PartnersMarquee";
 import { SUPPORTED_BY } from "../constants";
 
 export const SupportedBySection = () => {
   const sectionRef = useRef(null);
+  const entry = useSectionEntry();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -25,38 +32,39 @@ export const SupportedBySection = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden py-12 md:py-16"
+      className="relative flex min-h-screen items-center py-24 md:py-28"
       id="supported-by"
-      ref={sectionRef}>
-      {/* Animated Background Blobs */}
-      <motion.div className="pointer-events-none absolute inset-0">
-        <motion.div
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-          }}
-          className="absolute top-20 -left-24 h-96 w-96 rounded-full bg-emerald-400/20 blur-3xl"
-          style={{ opacity: blobOpacity, scale: blobScale }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          animate={{
-            x: [0, -50, 0],
-            y: [0, 30, 0],
-          }}
-          className="absolute -right-28 bottom-20 h-[500px] w-[500px] rounded-full bg-cyan-400/20 blur-3xl"
-          style={{ opacity: blobOpacity, scale: blobScale }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </motion.div>
+      ref={sectionRef}
+    >
+      {/* Constellation dot-grid — same interactive field as the other sections */}
+      <DotFieldInteraction />
+
+      {/* Ambient light — blobs overflow this section into the next one */}
+      <GlowField
+        blobs={[
+          {
+            className: "top-20 -left-24 h-96 w-96 bg-emerald-400/20",
+            style: { opacity: blobOpacity, scale: blobScale },
+            animate: { x: [0, 50, 0], y: [0, -30, 0] },
+            transition: { duration: 20, repeat: Infinity, ease: "easeInOut" },
+          },
+          {
+            className: "-right-28 bottom-20 h-[500px] w-[500px] bg-cyan-400/20",
+            style: { opacity: blobOpacity, scale: blobScale },
+            animate: { x: [0, -50, 0], y: [0, 30, 0] },
+            transition: { duration: 25, repeat: Infinity, ease: "easeInOut" },
+          },
+          {
+            // Straddles the top seam into the hero above.
+            className: "-top-24 right-[30%] h-72 w-72 bg-cyan-400/10",
+          },
+          {
+            // Straddles the bottom seam into the sponsors section.
+            className:
+              "-bottom-40 left-[30%] h-[420px] w-[420px] bg-emerald-400/15",
+          },
+        ]}
+      />
 
       {/* Tech Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -73,58 +81,37 @@ export const SupportedBySection = () => {
       {/* Content */}
       <div className="relative z-10 w-full px-4">
         {/* Header */}
-        <div className="text-center mb-16 max-w-6xl mx-auto">
+        <div className="mx-auto mb-16 max-w-4xl text-center">
           <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border-2 border-emerald-400/40 mb-6 backdrop-blur-sm shadow-lg"
-            initial={{ scale: 0, rotate: -180 }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            viewport={{ once: false }}
-            whileInView={{ scale: 1, rotate: 0 }}>
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}>
-              <Building2 className="w-5 h-5 text-emerald-400" />
-            </motion.div>
-            <span className="text-emerald-400 font-semibold text-sm md:text-base">
+            className="nx-glass-chip mb-6 inline-flex items-center gap-2 px-5 py-2"
+            {...entry.fade(0, 14, 0.6)}
+          >
+            <Building2 className="h-5 w-5 text-emerald-400" />
+            <span className="font-semibold text-emerald-300">
               Proudly supported by government institutions
             </span>
-            <motion.span
-              animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
-              className="h-2 w-2 rounded-full bg-emerald-400"
-              transition={{ duration: 2, repeat: Infinity }}
-            />
           </motion.div>
 
-          <motion.h2
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: false }}
-            whileInView={{ opacity: 1, y: 0 }}>
-            <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
-              Supported By
-            </span>
-          </motion.h2>
+          <h2 className="mb-6 text-4xl font-bold md:text-6xl lg:text-7xl">
+            <MaskedLine delay={0.1}>
+              <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
+                Supported By
+              </span>
+            </MaskedLine>
+          </h2>
 
           <motion.p
-            className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: false }}
-            whileInView={{ opacity: 1 }}>
+            className="mx-auto max-w-3xl text-lg leading-relaxed text-white/70 md:text-xl"
+            {...entry.fade(0.24, 16)}
+          >
             We are honored to be supported by esteemed government institutions
             that recognize the importance of technology and innovation in
             driving national progress and digital transformation.
           </motion.p>
         </div>
 
-        {/* Government Logos Grid Section */}
-        <motion.div
-          className="mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ delay: 0.8 }}
-          viewport={{ once: false }}
-          whileInView={{ opacity: 1, y: 0 }}>
+        {/* Government Logos Grid */}
+        <motion.div className="mt-16" {...entry.fade(0.36, 24)}>
           <SupportedByGrid logos={SUPPORTED_BY} />
         </motion.div>
       </div>
@@ -137,98 +124,56 @@ const SupportedByGrid = ({ logos = [] }) => {
   const lastIndex = logos.length - 1;
 
   return (
-    <div className="relative py-4 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 justify-items-center">
+    <div className="relative mx-auto max-w-7xl py-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {logos.map((logo, i) => {
-          // Center the last item if there's only 1 remaining
+          // Center the last item if there's only 1 remaining.
           if (remainder === 1 && i === lastIndex) {
             return (
-              <div key={`supported-${i}`} className="md:col-start-2">
-                <LogoCard logo={logo} />
+              <div
+                className="sm:col-span-2 md:col-span-1 md:col-start-2"
+                key={`supported-${i}`}
+              >
+                <PartnerLogoCard className="h-40 w-full md:h-48" logo={logo} />
               </div>
             );
           }
-          
-          // Center the last 2 items if there are 2 remaining
+
+          // Center the last 2 items if there are 2 remaining — each card is
+          // capped to one grid-column's width so the pair reads as a
+          // centered subset of the same 3-column row, not a wider duo.
           if (remainder === 2 && i === lastIndex - 1) {
             return (
-              <div key={`supported-wrapper-${i}`} className="md:col-span-3 md:flex md:justify-center md:gap-8 md:w-full">
-                <div className="w-full md:w-full md:max-w-[calc((100%-2rem)/3)]">
-                  <LogoCard logo={logo} />
-                </div>
-                <div className="w-full md:w-full md:max-w-[calc((100%-2rem)/3)]">
-                  <LogoCard logo={logos[lastIndex]} />
-                </div>
+              <div
+                className="col-span-1 flex justify-center gap-6 sm:col-span-2 md:col-span-3"
+                key={`supported-wrapper-${i}`}
+              >
+                <PartnerLogoCard
+                  className="h-40 w-full max-w-sm md:h-48 md:max-w-[calc((100%-3rem)/3)]"
+                  logo={logo}
+                />
+                <PartnerLogoCard
+                  className="h-40 w-full max-w-sm md:h-48 md:max-w-[calc((100%-3rem)/3)]"
+                  logo={logos[lastIndex]}
+                />
               </div>
             );
           }
-          
-          // Skip the last item if we already rendered it with the second-to-last
+
+          // Skip the last item — it was already rendered with the pair above.
           if (remainder === 2 && i === lastIndex) {
             return null;
           }
-          
+
           return (
-            <div key={`supported-${i}`}>
-              <LogoCard logo={logo} />
-            </div>
+            <PartnerLogoCard
+              className="h-40 w-full md:h-48"
+              key={`supported-${i}`}
+              logo={logo}
+            />
           );
         })}
       </div>
     </div>
-  );
-};
-
-const LogoCard = ({ logo }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleClick = () => {
-    if (logo.url) {
-      window.open(logo.url, "_blank", "noopener,noreferrer");
-    }
-  };
-
-  return (
-    <motion.div
-      className="flex items-center justify-center rounded-3xl bg-white/90 backdrop-blur-sm shadow-lg cursor-pointer overflow-hidden relative group mx-auto p-4 md:p-8 w-full min-h-[120px] md:min-h-0"
-      onClick={handleClick}
-      onHoverEnd={() => setIsHovered(false)}
-      onHoverStart={() => setIsHovered(true)}
-      transition={{ duration: 0.3 }}
-      whileHover={{
-        scale: 1.08,
-        y: -4,
-        boxShadow: "0 20px 40px rgba(16, 185, 129, 0.3)",
-      }}>
-      {/* Glow Effect */}
-      <motion.div
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        className="absolute inset-0 bg-gradient-to-br from-tech-green-100/10 to-brand-400/20 opacity-0"
-        transition={{ duration: 0.3 }}
-      />
-
-      {/* Shine Effect */}
-      <motion.div
-        animate={{ x: isHovered ? "200%" : "-100%" }}
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-        initial={{ x: "-100%" }}
-        transition={{ duration: 0.6 }}
-      />
-
-      {/* Logo */}
-      <motion.img
-        alt={logo.alt}
-        animate={{
-          filter:
-            isHovered ?
-              "grayscale(0%) brightness(1.15) contrast(1.1)"
-            : "grayscale(100%) brightness(0.95) opacity(0.8)",
-        }}
-        className="relative z-10 w-full h-full object-contain max-h-[140px] md:max-h-none"
-        src={logo.src}
-        transition={{ duration: 0.3 }}
-      />
-
-    </motion.div>
   );
 };

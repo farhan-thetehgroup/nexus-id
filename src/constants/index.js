@@ -1,5 +1,5 @@
 export const MENU_ITEMS = [
-  { name: "Support & Sponsors", id: "supported-by" },
+  { name: "Partners", id: "supported-by" },
   // { name: "Why", id: "why" },
   // { name: "Tour", id: "tours" },
   { name: "Speakers", id: "speakers" },
@@ -14,6 +14,29 @@ export const BRAND_LOGO_WHITE = "/images/brand-logo/nexus-teh-white.svg";
 export const SPEED_PARTNERS_MARQUEE = 300000; // kecepatan scroll (ms)
 export const LINK_REGISTER =
   "https://event.thetehgroup.com/-nexus-indonesia-2026/overview?token=ZT1jNTU3N2JiMy0wOTJkLTRjNjUtODIyNi0zMjUzODEwNDE4NGUmcmM9MUVFU0JEQkRQQg%3d%3d";
+
+export const VIP_REGISTRATION_URL =
+  "https://event.thetehgroup.com/nexus-indonesia-2027/overview?token=ZT0zNjczM2RmYi1iNjVlLTQzMmMtYjVmZi03YTk4ZDExZDQxMGYmcmM9VjhYNDZEWVI1MQ%3d%3d";
+
+export const CONFERENCE_ONLY_REGISTRATION_URL =
+  "https://event.thetehgroup.com/nexus-indonesia-2027-conference/overview?token=ZT1iZjE5N2VmYS05NTc1LTRiODUtOTgzNS02NWY0MzlkNTI1NTUmcmM9VTJJNUoyM0VNUg%3d%3d";
+
+export const TICKET_OPTIONS = [
+  {
+    id: "vip",
+    eyebrow: "Premium access",
+    title: "VIP",
+    copy: "Priority access and the full Nexus Indonesia 2027 experience.",
+    href: VIP_REGISTRATION_URL,
+  },
+  {
+    id: "conference-only",
+    eyebrow: "Conference pass",
+    title: "Conference Only",
+    copy: "Access to the full-day conference program.",
+    href: CONFERENCE_ONLY_REGISTRATION_URL,
+  },
+];
 export const TEASER_URL =
   "https://cyberattack-event.com/wp-content/uploads/2024/10/CA-MY-EVENT-DRAFT-2.mp4";
 
@@ -216,6 +239,34 @@ export const PARTNERS = [
   },
 ];
 
+export const EVENT_FORMAT_GALLERY = {
+  oneOnOne: [
+    { src: "/images/event-formats/one-on-one.jpg", alt: "One-on-one meeting setup" },
+    { src: "/images/event-formats/one-on-one-2.jpg", alt: "Expert consultation session" },
+    { src: "/images/event-formats/one-on-one-3.jpg", alt: "Expert consultation session" },
+  ],
+  liveDemo: [
+    { src: "/images/event-formats/live-demo-1.jpg", alt: "Live demonstration session" },
+    { src: "/images/event-formats/live-demo-2.jpg", alt: "Product showcase" },
+    { src: "/images/event-formats/live-demo-3.jpg", alt: "Technical demo" },
+  ],
+  workshop: [
+    { src: "/images/event-formats/workshop-1.jpg", alt: "Interactive workshop" },
+    { src: "/images/event-formats/workshop-2.jpg", alt: "Group activity" },
+    { src: "/images/event-formats/workshop-3.jpg", alt: "Hands-on session" },
+  ],
+  conference: [
+    { src: "/images/event-formats/conference-1.jpg", alt: "Keynote Speaker" },
+    { src: "/images/event-formats/conference-2.jpg", alt: "Panel Discussion" },
+    { src: "/images/event-formats/conference-3.jpg", alt: "Fireside Chat" },
+  ],
+  exhibition: [
+    { src: "/images/event-formats/exhibition-1.jpg", alt: "Exhibition hall" },
+    { src: "/images/event-formats/exhibition-2.jpg", alt: "Exhibition hall" },
+    { src: "/images/event-formats/exhibition-3.jpg", alt: "Exhibition hall" },
+  ],
+};
+
 export const SUPPORTED_BY = [
   // Add government logos here
   // Example structure:
@@ -249,7 +300,7 @@ export const SUPPORTED_BY = [
 export const LOCATION_DATA = {
   title: "Royal Tulip Gunung Geulis Resort and Golf",
   address: "Jl. Bukit Geulis, Nagrak, Gadog-Bogor, Kabupaten Bogor, Jawa Barat 16720",
-  date: "4-5 February 2026",
+  date: "24 March 2027",
   room: "Royal Tulip Ballroom South, Royal Tulip Ballroom West, Royal Tulip Ballroom East",
   // image: "/images/venue/jakarta.webp", // Main image displayed in the section
   images: [

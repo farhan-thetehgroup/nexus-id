@@ -1,18 +1,50 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
-import { MapPin, Calendar, Clock, DoorOpen, ExternalLink, Maximize2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import {
+  MapPin,
+  Calendar,
+  Clock,
+  DoorOpen,
+  ExternalLink,
+  Maximize2,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+
+import {
+  MaskedLine,
+  useSectionEntry,
+} from "../components/common/ui/SectionEntry";
+import { GlowField } from "../components/common/ui/GlowField";
+import { GlassButton } from "../components/common/ui/GlassButton";
 import { LOCATION_DATA } from "../constants";
 import { GalleryModal } from "../components/GalleryModal";
 
+const InfoRow = ({ icon: Icon, label, value }) => (
+  <motion.div
+    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.05] p-4 transition-colors duration-300 hover:border-white/25"
+    whileHover={{ x: 4 }}>
+    <div className="nx-glass-icon flex h-12 w-12 flex-shrink-0 items-center justify-center">
+      <Icon className="h-6 w-6 text-emerald-300" />
+    </div>
+    <div>
+      <p className="mb-1 text-sm text-white/50">{label}</p>
+      <p className="text-lg font-semibold text-white">{value}</p>
+    </div>
+  </motion.div>
+);
+
 export const LocationSection = () => {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
   const [showGallery, setShowGallery] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState(0);
+  const [activeImage, setActiveImage] = useState(0);
+  const entry = useSectionEntry();
 
   const location = LOCATION_DATA;
+  const images = location.images || [];
+  const currentImage = images[activeImage];
 
   const handleGoogleMapsClick = () => {
     if (location.googleMapsUrl) {
@@ -20,240 +52,228 @@ export const LocationSection = () => {
     }
   };
 
+  const showPreviousImage = () => {
+    setActiveImage((current) => (current === 0 ? images.length - 1 : current - 1));
+  };
+
+  const showNextImage = () => {
+    setActiveImage((current) => (current + 1) % images.length);
+  };
+
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center py-20 px-4 overflow-hidden"
-      id="location"
-      ref={containerRef}>
-      
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-32 right-20 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-32 left-20 w-80 h-80 bg-purple-500/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-3xl" />
-      </div>
+      className="relative flex min-h-screen items-center justify-center px-4 py-32"
+      id="location">
+
+      {/* Pooled light behind the glass */}
+      <GlowField
+        className="opacity-55"
+        blobs={[
+          {
+            className: "top-[14%] right-[8%] w-[400px] h-[400px] bg-cyan-500/25",
+          },
+          {
+            className: "bottom-[14%] left-[8%] w-[360px] h-[360px] bg-emerald-500/25",
+          },
+          {
+            className:
+              "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[460px] bg-teal-500/15",
+          },
+          {
+            className: "-top-40 left-[32%] w-[380px] h-[380px] bg-cyan-500/15",
+          },
+        ]}
+      />
 
       {/* Grid Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05)_0%,transparent_100%)]" />
 
-      <div className="max-w-screen-2xl mx-auto relative z-10 w-full">
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl">
         {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}>
-          
+        <div className="mb-20 text-center">
           <motion.div
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 to-blue-500/20 border border-emerald-500/40 mb-6 backdrop-blur-sm"
-            initial={{ scale: 0, rotate: -180 }}
-            animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}>
-            <MapPin className="w-5 h-5 text-emerald-400" />
-            <span className="text-emerald-400 font-semibold">
-              Event Venue
-            </span>
+            className="nx-glass-chip mb-6 inline-flex items-center gap-2 px-4 py-2"
+            {...entry.fade(0, 14, 0.6)}>
+            <MapPin className="h-5 w-5 text-emerald-400" />
+            <span className="font-semibold text-emerald-300">Event Venue</span>
           </motion.div>
 
-          <motion.h2
-            className="text-5xl md:text-7xl font-bold mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.3 }}>
-            <span className="bg-gradient-to-r from-blue-400 via-emerald-400 to-purple-400 bg-clip-text text-transparent">
-              Event Location
-            </span>
-          </motion.h2>
+          <h2 className="mb-6 text-5xl font-bold md:text-7xl">
+            <MaskedLine delay={0.1}>
+              <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+                Event Location
+              </span>
+            </MaskedLine>
+          </h2>
 
           <motion.p
-            className="text-xl text-gray-400 max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}>
+            className="mx-auto max-w-3xl text-xl text-white/70"
+            {...entry.fade(0.24, 16)}>
             Join us at our premier venue for an unforgettable experience
           </motion.p>
-        </motion.div>
+        </div>
 
         {/* Location Card */}
-        <motion.div
-          className="relative group max-w-6xl mx-auto"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.8, delay: 0.4 }}>
-          
-          {/* Glow effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/50 to-cyan-500/50 rounded-3xl blur-2xl opacity-0 group-hover:opacity-75 transition-opacity duration-500" />
-          
-          {/* Main Card */}
-          <div className="relative bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-xl rounded-3xl border border-emerald-500/30 hover:border-emerald-400/70 overflow-hidden">
-            
-            {/* Background gradient effect */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(16,185,129,0.1),transparent)]" />
-            
-            {/* Top glow orb */}
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-emerald-500/30 to-cyan-500/30 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+        <motion.div className="relative mx-auto max-w-6xl" {...entry.fade(0.36, 24)}>
+          {/* Colored field the frost refracts */}
+          <div className="absolute -inset-2 rounded-[2rem] bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 opacity-40 blur-2xl" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              {/* Left Side - Venue Images List */}
-              <div className="relative min-h-[400px] lg:min-h-[500px] p-4 flex flex-col gap-4">
-                {/* Get first 3 venue images */}
-                {location.images && location.images.length > 0 && (
-                  <>
-                    {location.images
-                      .slice(0, 3)
-                      .map((img, idx) => {
-                        const imageIndex = location.images.findIndex((i) => i.src === img.src);
-                        return (
-                          <motion.div
-                            key={idx}
-                            className="relative flex-1 min-h-[120px] overflow-hidden rounded-xl cursor-pointer group/image-item"
-                            onClick={() => {
-                              setGalleryIndex(imageIndex >= 0 ? imageIndex : 0);
-                              setShowGallery(true);
-                            }}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                            transition={{ duration: 0.6, delay: 0.5 + idx * 0.1 }}
-                            whileHover={{ scale: 1.02 }}
-                          >
-                            {/* Image */}
-                            <motion.img
-                              alt={img.alt || `Venue Image ${idx + 1}`}
-                              className="w-full h-full object-cover"
-                              src={img.src}
-                              transition={{ duration: 0.3 }}
-                              whileHover={{ scale: 1.1 }}
-                            />
-                            
-                            {/* Gradient overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />
-                            
-                            {/* Image glow effect */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 opacity-0 group-hover/image-item:opacity-100 transition-opacity duration-500" />
-                            
-                            {/* Click to view overlay */}
-                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image-item:opacity-100 transition-opacity duration-300 bg-black/30">
-                              <motion.div
-                                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}>
-                                <Maximize2 className="w-4 h-4 text-white" />
-                                <span className="text-white text-sm font-semibold">View</span>
-                              </motion.div>
-                            </div>
-                          </motion.div>
-                        );
-                      })}
-                  </>
+          <div className="nx-glass-pane relative overflow-hidden">
+            <div className="grid grid-cols-1 gap-0 lg:grid-cols-2">
+              {/* Left Side - Venue Image Carousel */}
+              <div className="group/carousel relative min-h-[320px] overflow-hidden p-4 lg:min-h-[500px]">
+                {images.length > 0 && (
+                  <div className="relative h-full min-h-[288px] w-full overflow-hidden rounded-xl border border-white/10 lg:min-h-[468px]">
+                    {images.map((img, idx) => (
+                      <img
+                        key={img.src}
+                        alt={img.alt || `Venue image ${idx + 1}`}
+                        className={
+                          idx === activeImage
+                            ? "absolute inset-0 z-[1] h-full w-full scale-[1.01] object-cover opacity-100 transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/carousel:scale-[1.045]"
+                            : "absolute inset-0 h-full w-full scale-[1.01] object-cover opacity-0 transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                        }
+                        src={img.src}
+                        loading={idx === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                        aria-hidden={idx !== activeImage}
+                      />
+                    ))}
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#03101a]/70 via-[#03101a]/5 to-transparent" />
+
+                    {/* Caption */}
+                    {currentImage && (
+                      <div className="absolute bottom-5 left-5 z-[3] max-w-[calc(100%-140px)]">
+                        {currentImage.label && (
+                          <span className="block text-xs font-semibold tracking-[0.16em] text-emerald-300 uppercase">
+                            {currentImage.label}
+                          </span>
+                        )}
+                        {currentImage.title && (
+                          <strong className="mt-1.5 block text-xl font-bold text-white sm:text-2xl">
+                            {currentImage.title}
+                          </strong>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Prev / Next controls */}
+                    {images.length > 1 && (
+                      <div className="absolute top-4 right-4 z-[3] flex gap-2">
+                        <button
+                          type="button"
+                          className="nx-glass-icon flex h-10 w-10 items-center justify-center text-white/80 transition-colors duration-300 hover:border-white/30 hover:text-white"
+                          onClick={showPreviousImage}
+                          aria-label="Show previous venue image">
+                          <ChevronLeft className="h-5 w-5" />
+                        </button>
+                        <button
+                          type="button"
+                          className="nx-glass-icon flex h-10 w-10 items-center justify-center text-white/80 transition-colors duration-300 hover:border-white/30 hover:text-white"
+                          onClick={showNextImage}
+                          aria-label="Show next venue image">
+                          <ChevronRight className="h-5 w-5" />
+                        </button>
+                      </div>
+                    )}
+
+                    {/* View full / open gallery modal */}
+                    <button
+                      type="button"
+                      className="absolute top-4 left-4 z-[3] flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-2 text-xs font-semibold text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover/carousel:opacity-100"
+                      onClick={() => {
+                        setGalleryIndex(activeImage);
+                        setShowGallery(true);
+                      }}>
+                      <Maximize2 className="h-3.5 w-3.5" />
+                      View
+                    </button>
+
+                    {/* Dot indicators */}
+                    {images.length > 1 && (
+                      <div
+                        className="absolute right-5 bottom-5 z-[3] flex items-center gap-2"
+                        aria-label="Choose venue image">
+                        {images.map((img, idx) => (
+                          <button
+                            key={img.src}
+                            type="button"
+                            className={
+                              idx === activeImage
+                                ? "h-2 w-6 rounded-full bg-emerald-300 transition-[width,background] duration-300"
+                                : "h-2 w-2 rounded-full bg-white/35 transition-[width,background] duration-300 hover:bg-white/55"
+                            }
+                            onClick={() => setActiveImage(idx)}
+                            aria-label={`Show ${(img.label || `image ${idx + 1}`).toLowerCase()}`}
+                            aria-current={idx === activeImage ? "true" : undefined}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
 
               {/* Right Side - Details */}
-              <div className="relative p-8 md:p-12 flex flex-col justify-center">
-                <motion.div
-                  className="space-y-6"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}>
-                  
+              <div className="relative flex flex-col justify-center p-8 md:p-12">
+                <div className="space-y-6">
                   {/* Location Title */}
                   <div>
-                    <h3 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                    <h3 className="mb-4 bg-gradient-to-r from-emerald-300 via-cyan-300 to-teal-300 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
                       {location.title}
                     </h3>
-                    
+
                     {location.address && (
-                      <p className="text-gray-300 text-lg mb-2 flex items-start gap-2">
-                        <MapPin className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-1" />
+                      <p className="mb-2 flex items-start gap-2 text-lg text-white/70">
+                        <MapPin className="mt-1 h-5 w-5 flex-shrink-0 text-emerald-300" />
                         <span>{location.address}</span>
                       </p>
                     )}
                   </div>
 
                   {/* Divider */}
-                  <div className="h-px w-full bg-gradient-to-r from-transparent via-emerald-500 to-transparent" />
+                  <div className="nx-hairline w-full" />
 
                   {/* Date and Time */}
                   <div className="space-y-4">
                     {location.date && (
-                      <motion.div
-                        className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20"
-                        whileHover={{ scale: 1.02, x: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}>
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
-                          <Calendar className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-gray-400 mb-1">Date</p>
-                          <p className="text-lg font-semibold text-white">{location.date}</p>
-                        </div>
-                      </motion.div>
+                      <InfoRow icon={Calendar} label="Date" value={location.date} />
                     )}
 
                     {location.time && (
-                      <motion.div
-                        className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20"
-                        whileHover={{ scale: 1.02, x: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}>
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center flex-shrink-0">
-                          <Clock className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-gray-400 mb-1">Time</p>
-                          <p className="text-lg font-semibold text-white">{location.time}</p>
-                        </div>
-                      </motion.div>
+                      <InfoRow icon={Clock} label="Time" value={location.time} />
                     )}
 
                     {location.room && (
-                      <motion.div
-                        className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
-                        whileHover={{ scale: 1.02, x: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}>
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-                          <DoorOpen className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-gray-400 mb-1">Room</p>
-                          <p className="text-lg font-semibold text-white">{location.room}</p>
-                        </div>
-                      </motion.div>
+                      <InfoRow icon={DoorOpen} label="Room" value={location.room} />
                     )}
                   </div>
 
                   {/* Google Maps Button */}
                   {location.googleMapsUrl && (
-                    <motion.button
-                      className="w-full mt-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white font-bold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 group/btn"
+                    <GlassButton
+                      as="button"
+                      className="mt-6 w-full justify-center gap-3 py-4 text-white"
                       onClick={handleGoogleMapsClick}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}>
-                      <MapPin className="w-5 h-5" />
+                      tone="emerald">
+                      <MapPin className="h-5 w-5" />
                       <span>View on Google Maps</span>
-                      <ExternalLink className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                    </motion.button>
+                      <ExternalLink className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </GlassButton>
                   )}
 
                   {/* Additional Information */}
                   {location.additionalInfo && (
-                    <div className="pt-4 border-t border-emerald-500/20">
-                      <p className="text-gray-400 text-sm leading-relaxed">
+                    <div className="border-t border-white/10 pt-4">
+                      <p className="text-sm leading-relaxed text-white/50">
                         {location.additionalInfo}
                       </p>
                     </div>
                   )}
-                </motion.div>
+                </div>
               </div>
             </div>
-
-            {/* Bottom gradient bar */}
-            <motion.div
-              className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-500"
-              initial={{ scaleX: 0 }}
-              style={{ originX: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              whileInView={{ scaleX: 1 }}
-            />
           </div>
         </motion.div>
       </div>
@@ -262,7 +282,6 @@ export const LocationSection = () => {
       <AnimatePresence>
         {showGallery && location.images && location.images.length > 0 && (
           <GalleryModal
-            backdropGradient="from-brand-900/80 via-tech-green-700/70 to-tech-green-900"
             images={location.images}
             index={galleryIndex}
             onClose={() => setShowGallery(false)}
@@ -273,4 +292,3 @@ export const LocationSection = () => {
     </section>
   );
 };
-

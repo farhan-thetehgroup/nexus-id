@@ -168,7 +168,7 @@ const SocialLink = ({ icon: Icon, href, label }) => {
   return (
     <motion.a
       aria-label={label}
-      className="group relative w-12 h-12 flex items-center justify-center rounded-xl bg-blue-900/50 border-2 border-emerald-400/20 hover:border-emerald-400 backdrop-blur-sm"
+      className="nx-glass-icon group relative flex h-12 w-12 items-center justify-center rounded-xl transition-colors duration-300 hover:border-white/30"
       href={href}
       rel="noopener noreferrer"
       target="_blank"
@@ -180,14 +180,14 @@ const SocialLink = ({ icon: Icon, href, label }) => {
         whileHover={{ opacity: 1 }}
       />
 
-      <Icon className="relative h-5 w-5 text-gray-400 group-hover:text-emerald-400 transition-colors duration-300" />
+      <Icon className="relative h-5 w-5 text-white/60 group-hover:text-emerald-300 transition-colors duration-300" />
 
       <motion.div
-        className="absolute -top-12 left-1/2 transform -translate-x-1/2 px-3 py-2 bg-blue-900 border-2 border-emerald-400/50 rounded-lg text-xs text-emerald-400 whitespace-nowrap pointer-events-none opacity-0"
+        className="absolute -top-12 left-1/2 transform -translate-x-1/2 rounded-lg border border-white/15 bg-[#07161f]/95 px-3 py-2 text-xs text-white/80 whitespace-nowrap backdrop-blur-xl pointer-events-none opacity-0"
         transition={{ duration: 0.2 }}
         whileHover={{ opacity: 1, y: -4 }}>
         {label}
-        <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-blue-900 border-r-2 border-b-2 border-emerald-400/50 rotate-45" />
+        <div className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-r border-b border-white/15 bg-[#07161f]/95" />
       </motion.div>
     </motion.a>
   );
@@ -207,7 +207,7 @@ const FooterLink = ({ href, children }) => {
   };
   return (
     <motion.a
-      className="group relative inline-block text-gray-400 hover:text-emerald-400 transition-colors duration-300"
+      className="group relative inline-block text-white/60 transition-colors duration-300 hover:text-emerald-300"
       href={href}
       onClick={handleClick}
       whileHover={{ x: 4 }}>
@@ -255,7 +255,7 @@ export const FooterSection = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-to-b from-gray-900 via-gray-900 to-black border-t border-emerald-400/20 overflow-hidden">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-gradient-to-b from-[#04121d] via-[#04121d] to-[#03101a]">
       <div className="absolute inset-0 h-full">
         <ThreeFooterBackground />
       </div>
@@ -281,7 +281,7 @@ export const FooterSection = () => {
               </h3>
             </motion.div>
 
-            <p className="text-gray-400 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-white/60">
               Connecting innovation leaders across Asia-Pacific. Join us for the
               most transformative tech summit of 2026.
             </p>
@@ -308,7 +308,7 @@ export const FooterSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}>
-            <h3 className="text-emerald-400 font-bold mb-6 text-lg">
+            <h3 className="mb-6 text-lg font-bold text-emerald-300">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -335,18 +335,18 @@ export const FooterSection = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}>
-            <h3 className="text-cyan-400 font-bold mb-6 text-lg">
+            <h3 className="mb-6 text-lg font-bold text-cyan-300">
               Get In Touch
             </h3>
             <div className="space-y-4">
               <motion.a
-                className="flex items-start gap-3 text-gray-400"
+                className="flex items-start gap-3 text-white/60"
                 href={`https://api.whatsapp.com/send?phone=${PHONE_WHATSAPP}&text=${WHATSAPP_MESSAGE}`}
                 rel="noopener noreferrer"
                 target="_blank"
                 transition={{ duration: 0.2 }}
                 whileHover={{ x: 4 }}>
-                <Phone className="h-5 w-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                <Phone className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-300" />
                 <div>
                   <p className="text-sm">Call us</p>
                   <p className="text-white">{PHONE_WHATSAPP}</p>
@@ -354,11 +354,11 @@ export const FooterSection = () => {
               </motion.a>
 
               <motion.div
-                className="flex items-start gap-3 text-gray-400"
+                className="flex items-start gap-3 text-white/60"
                 transition={{ duration: 0.2 }}
                 whileHover={{ x: 4 }}>
                 <svg
-                  className="h-5 w-5 text-cyan-400 mt-0.5 flex-shrink-0"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-cyan-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24">
@@ -384,21 +384,21 @@ export const FooterSection = () => {
 
         {/* Bottom Bar */}
         <motion.div
-          className="pt-8 border-t-2 border-emerald-400/20"
+          className="border-t border-white/10 pt-8"
           initial={{ opacity: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
           viewport={{ once: true }}
           whileInView={{ opacity: 1 }}>
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <p className="text-sm text-white/40">
               © {currentYear} NEXUS by TEH Group. All rights reserved.
             </p>
 
-            <div className="flex items-center gap-2 text-gray-500 text-sm">
+            <div className="flex items-center gap-2 text-sm text-white/40">
               <span>Made with</span>
               <motion.span
                 animate={{ scale: [1, 1.2, 1] }}
-                className="text-red-500"
+                className="text-red-400"
                 transition={{ duration: 1, repeat: Infinity }}>
                 ❤️
               </motion.span>
@@ -411,23 +411,13 @@ export const FooterSection = () => {
       <motion.button
         animate={{ opacity: 1, y: 0 }}
         aria-label="Scroll to top"
-        className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center shadow-xl z-50 group"
+        className="nx-glass-icon group fixed right-8 bottom-8 z-50 flex h-12 w-12 items-center justify-center rounded-full transition-colors duration-300 hover:border-white/30"
         initial={{ opacity: 0, y: 20 }}
         onClick={scrollToTop}
         transition={{ delay: 1 }}
-        whileHover={{
-          scale: 1.15,
-          boxShadow: "0 0 40px rgba(16, 185, 129, 0.6)",
-        }}
-        whileTap={{ scale: 0.9 }}>
-        <ArrowUp className="h-6 w-6 text-blue-950" />
-
-        <motion.span
-          className="absolute inset-0 rounded-full bg-emerald-400"
-          initial={{ opacity: 0, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          whileHover={{ opacity: 0.3, scale: 1.5 }}
-        />
+        whileHover={{ scale: 1.1, y: -2 }}
+        whileTap={{ scale: 0.95 }}>
+        <ArrowUp className="h-6 w-6 text-emerald-300 transition-transform group-hover:-translate-y-0.5" />
       </motion.button>
     </footer>
   );
