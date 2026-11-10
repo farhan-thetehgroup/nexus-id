@@ -319,152 +319,175 @@ export const PHONE_WHATSAPP = "+852 68019775";
 export const WHATSAPP_MESSAGE =
   "Hi Nexus Team,\nI'm interested in joining as a sponsor for Nexus. Could we discuss the available sponsorship packages and next steps? Thank you!";
 
+/* 2027 speaker lineup - client table drop (chat screenshots): 27 rows.
+   Names / titles / companies are verbatim from the table; corporate email
+   columns stay in the client's spreadsheet, not on the public site.
+   Headshots pending - cards fall back to initials until the drop arrives.
+   Per-entry comment carries the session role tag from the table
+   (Opening / Keynote / Moderator / Fireside / Panelist / Presentation n)
+   for when the 2027 programme is assembled. */
 export const SPEAKERS = [
   {
-    id: 1,
-    fullName: "Dr. Anung Herlianto EC, SE.AKT, CA, MBA",
-    jobTitle: "Deputy Commissioner and Head",
-    company: "Otoritas Jasa Keuangan (OJK)",
-    image: "/images/speakers/Dr-Anung-Herlianto.webp",
-    isExclusive: true,
+    id: 1, // Opening
+    fullName: "Uli Agustina",
+    jobTitle: "Kepala Departemen Pengawasan Inovasi Teknologi Sektor Keuangan, Aset Keuangan Digital & Aset Kripto",
+    company: "OJK",
   },
   {
-    id: 2,
-    fullName: "Pinky Dezar Zulkarnain",
-    jobTitle: "Director of IT",
-    company: "Badan Pengawas Keuangan Republik Indonesia (BPK RI)",
-    image: "/images/speakers/Pengky-Dezar.webp",
-    isExclusive: true,
+    id: 2, // Keynote
+    fullName: "Setiaji",
+    jobTitle: "Director of Information Technology",
+    company: "BPJS Kesehatan",
   },
   {
-    id: 3,
-    fullName: "Mochammad Firdaus",
-    jobTitle: "Director of Electronics Service System, Network, and Infrastructure",
-    company: "Kementrian Investasi dan Hilirisasi",
-    image: "/images/speakers/Mochammad-Firdaus.webp",
-    isExclusive: true,
+    id: 3, // Moderator
+    fullName: "Pitra Saputra",
+    jobTitle: "Head of Data Management",
+    company: "Allo Bank",
   },
   {
-    id: 4,
-    fullName: "Ashok Bajpai",
-    jobTitle: "Chief Transformation Officer",
-    company: "PT Pertamina Bina Medika IHC",
-    image: "/images/speakers/Ahok-Bajpai.webp",
-    isExclusive: true,
+    id: 4, // Panelist
+    fullName: "Hendy Gunawan",
+    jobTitle: "Enterprise Data Governance and Data Protection Division Head",
+    company: "Bank Sinarmas",
   },
   {
-    id: 5,
-    fullName: "Theo Sutarto",
-    jobTitle: "Assistant Deputy Minister",
-    company: "Coordinating Ministry for Economic Affairs of the Republic of Indonesia",
-    image: "/images/speakers/Theo-Sutarto.webp",
-    isExclusive: true,
+    id: 5, // Panelist
+    fullName: "Suhelmy Syaifuddin",
+    jobTitle: "VP - Head of Data Analytics & AI ML",
+    company: "Indosat",
   },
   {
-    id: 6,
-    fullName: "Drs. Slamet Aji Pamungkas, M.Eng",
-    jobTitle: "Deputi Bidang Keamanan Siber dan Sandi Perekonomian",
-    company: "Badan Siber dan Sandi Negara (BSSN)",
-    image: "/images/speakers/Slamet-Aji.webp",
-    isExclusive: true,
+    id: 6, // Panelist
+    fullName: "Yudhi Dwi Cahyono",
+    jobTitle: "Department Head of Data & AI Governance",
+    company: "Bank BRI",
   },
   {
-    id: 8,
-    fullName: "Benedict Sulaiman",
-    jobTitle: "Director of IT",
-    company: "Mandaya Hospital",
-    image: "/images/speakers/Benedict-Sulaiman.webp",
+    id: 7, // Moderator
+    fullName: "Rickent Putra Haki",
+    jobTitle: "VP of Technology",
+    company: "InJourney Hospitality",
   },
   {
-    id: 9,
-    fullName: "Dwi Prasetyo Minarto",
-    jobTitle: "VP of IT",
-    company: "PT Kilang Pertamina International",
-    image: "/images/speakers/Dwi-Prasetyo.webp",
+    id: 8, // Fireside
+    fullName: "Siauw Yohanes Darmawan",
+    jobTitle: "Sr. GM IT",
+    company: "Combiphar",
   },
   {
-    id: 10,
-    fullName: "Adhiguna Mahendra",
-    jobTitle: "Director of Data and AI",
-    company: "Bunda Mulia University",
-    image: "/images/speakers/Adhiguna-Mahendra.webp",
+    id: 9, // Moderator
+    fullName: "Varuna De Wass Gunawardena",
+    jobTitle: "Head of IT",
+    company: "Agrinesia Raya",
   },
   {
-    id: 11,
-    fullName: "Dea Saka Kurnia Putra",
-    jobTitle: "Cybersecurity Expert",
-    // company: "Indonesia Chamber of Commerce and Industry (KADIN)",
-    image: "/images/speakers/Dea-Saka.webp",
+    id: 10, // Panelist
+    fullName: "Rajesh Grover",
+    jobTitle: "Group Chief Digital & Technology Officer",
+    company: "Domino's Pizza Indonesia",
   },
   {
-    id: 12,
-    fullName: "I Gede Darwin Atma Winarta",
+    id: 11, // Panelist
+    fullName: "Dify Purba",
+    jobTitle: "Head of Digital & AI Strategy",
+    company: "JEC Eye Hospitals and Clinics",
+  },
+  {
+    id: 12, // Moderator
+    fullName: "Jerry Pratama Hakim",
+    jobTitle: "Head of Information Technology",
+    company: "KPN Corp",
+  },
+  {
+    id: 13, // Panelist - name cell unreadable in every OCR pass; derived from the corporate email yoke.susatyo@pertamina.com - CONFIRM spelling with the client
+    fullName: "Yoke Susatyo",
+    jobTitle: "Trusted Adviser to Business Support Director",
+    company: "Pertamina",
+  },
+  {
+    id: 14, // Panelist
+    fullName: "Joseph L",
+    jobTitle: "IT and Digital Transformation Director",
+    company: "PT Darma Henwa",
+  },
+  {
+    id: 15, // Moderator
+    fullName: "Erwin Susilo",
     jobTitle: "Head of Digital Transformation",
-    company: "BCA Life",
-    image: "/images/speakers/Gede-Darwin.webp",
+    company: "PT Sinar Mitra Sepadan Finance (SMSFinance)",
   },
   {
-    id: 13,
-    fullName: "Surya Adhi Saputra",
-    jobTitle: "Country Digital and Technology Head for Indonesia, Philippines, and Thailand",
-    company: "Haleon",
-    image: "/images/speakers/Surya-Adhi.webp",
+    id: 16, // Panelist
+    fullName: "Andreas Tanadi",
+    jobTitle: "Head, Business Transformation",
+    company: "MSIG",
   },
   {
-    id: 16,
-    fullName: "Darmadi",
-    jobTitle: "Chief Information Officer",
-    company: "Toyota Astra Motor",
-    image: "/images/speakers/Darmadi.webp",
+    id: 17, // Panelist
+    fullName: "Rachmadi Gustrian",
+    jobTitle: "Chief Transformation",
+    company: "IFG",
   },
   {
-    id: 17,
-    fullName: "Purnama Sulfa",
-    jobTitle: "Head of Chief Information Security Division",
-    company: "Mandiri Taspen",
-    image: "/images/speakers/Purnama-Sulfa.webp",
+    id: 18, // Panelist
+    fullName: "Henri H.",
+    jobTitle: "Senior Vice President - Head of Strategic Transformation, Cybersecurity & AI GRC Enthusiast",
+    company: "Adira Finance",
   },
   {
-    id: 18,
-    fullName: "Widianty",
-    jobTitle: "Head of Tech",
-    company: "PT Kalbe Farma, Tbk",
-    image: "/images/speakers/Widianty.jpeg",
+    id: 19, // Presentation 1 - company cell literally "BUMN" (generic), flagged for the client to name the actual institution
+    fullName: "Nikson Putra",
+    jobTitle: "Information Security Division Head (SVP)",
+    company: "BUMN",
   },
   {
-    id: 19,
-    fullName: "Nelish Jain",
-    jobTitle: "Co-Founder and CEO",
-    company: "Clean Start",
-    image: "/images/speakers/Nelish-Jain.webp",
+    id: 20, // Presentation 2
+    fullName: "Guntur Pratomo",
+    jobTitle: "CISO",
+    company: "Bank Sinarmas",
   },
   {
-    id: 20,
-    fullName: "Billy Yuliadi",
-    jobTitle: "Technical Director",
-    company: "Tanium",
-    image: "/images/speakers/Billy-Yuliadi.webp",
+    id: 21, // Presentation 3
+    fullName: "Sachunaden Prabhu",
+    jobTitle: "CISO",
+    company: "Bank Sahabat Sampoerna",
   },
   {
-    id: 21,
-    fullName: "Michael Choo",
-    jobTitle: "Senior Solutions Architect",
-    company: "Sempiris APJ",
-    image: "/images/speakers/Michael-Choo.webp",
+    id: 22, // Presentation 4
+    fullName: "Ridwan Santoso",
+    jobTitle: "IT Security Operations Department Head",
+    company: "Allo Bank",
   },
   {
-    id: 22,
-    fullName: "Donny Wu",
-    jobTitle: "Vice President of Digital Initiatives and Solutions",
-    company: "Sinarmas Land",
-    image: "/images/speakers/Donny-Wu.webp",
+    id: 23, // Presentation 5
+    fullName: "Anas Dwi Vidianto",
+    jobTitle: "Cloud Cybersecurity & Operation Division Head",
+    company: "Astra International",
   },
   {
-    id: 23,
-    fullName: "James Leong",
-    jobTitle: "Ceo and Founder",
-    company: "Xtremax",
-    image: "/images/speakers/James-Leong.webp",
+    id: 24, // Presentation 6
+    fullName: "Nuzli Hernawan",
+    jobTitle: "Business Director of Infrastructure, Cloud & Cybersecurity",
+    company: "Telkomsigma",
+  },
+  {
+    id: 25, // Presentation 7
+    fullName: "Dani Aquarius Febrianda",
+    jobTitle: "AVP - Head of Information Security (BISO)",
+    company: "Prudential Syariah",
+  },
+  {
+    id: 26, // Presentation 8
+    fullName: "Nico Restu Pratama",
+    jobTitle: "Head of Cybersecurity",
+    company: "Kideco Agung Jaya",
+  },
+  {
+    id: 27, // Presentation 9 - title/email row is cut off at the bottom edge of the screenshot
+    fullName: "Eryk Budi Pratama",
+    jobTitle: undefined,
+    company: "KADIN",
   }
 ];
 

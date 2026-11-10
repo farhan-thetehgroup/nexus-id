@@ -11,6 +11,14 @@ import { CursorSpotlight } from "../components/common/ui/CursorSpotlight";
 import { GlowField } from "../components/common/ui/GlowField";
 import { SPEAKERS } from "../constants";
 
+const speakerInitials = (fullName = "") =>
+  fullName
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("");
+
 const SpeakerCard = ({ speaker, index }) => {
   const isExclusive = speaker.isExclusive || false;
 
@@ -43,11 +51,18 @@ const SpeakerCard = ({ speaker, index }) => {
 
             <div className="relative h-32 w-32 rounded-full border border-white/20 bg-white/[0.06] p-1.5 backdrop-blur-xl">
               <div className="h-full w-full overflow-hidden rounded-full">
-                <img
-                  alt={speaker.fullName}
-                  className="h-full w-full object-cover"
-                  src={speaker.image}
-                />
+                {speaker.image ? (
+                  <img
+                    alt={speaker.fullName}
+                    className="h-full w-full object-cover"
+                    src={speaker.image}
+                  />
+                ) : (
+                  /* Headshots pending: initials fallback keeps the glass ring clean */
+                  <span className="flex h-full w-full items-center justify-center bg-white/[0.04] [font-family:var(--nx-mono)] text-2xl font-normal uppercase tracking-[0.1em] text-emerald-300">
+                    {speakerInitials(speaker.fullName)}
+                  </span>
+                )}
               </div>
             </div>
 
